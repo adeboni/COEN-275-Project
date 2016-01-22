@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class RegexWordKnowledgeSource {
+public class RegexWordKnowledgeSource extends WordStructureKnowledgeSource {
 
 	public static List<String> getWords(String regex, int numWords) throws FileNotFoundException {
 		List<String> ret = new ArrayList<String>();
