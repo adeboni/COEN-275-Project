@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class WordStructureKnowledgeSource {
+public class WordStructureKnowledgeSource extends WordKnowledgeSource {
 
 	public static enum StructureLocation {
 		PREFIX,
 		SUFFIX
 	}
-	
-	public static List<String> getWords(StructureLocation location, int numLetters, int numWords) throws FileNotFoundException {
+
+	public List<String> getWords(StructureLocation location, int numLetters, int numWords) throws FileNotFoundException {
 		List<String> ret = new ArrayList<String>();
 		
-		ArrayList<String> dict = new ArrayList<String>();
+		ArrayList<String> dict = new ArrayList<>();
 		if (location == StructureLocation.PREFIX) {
 			Scanner s = new Scanner(new File("resources/prefixes.txt"));
 			while (s.hasNext()) dict.add(s.next());
@@ -33,9 +33,11 @@ public class WordStructureKnowledgeSource {
 			
 		return ret;
 	}
-	
+
+
 	public static void main(String[] args) throws FileNotFoundException {
-		List<String> words = getWords(StructureLocation.SUFFIX, 3, 20);
+		WordStructureKnowledgeSource wordStructureKnowledgeSource = new WordStructureKnowledgeSource();
+		List<String> words = wordStructureKnowledgeSource.getWords(StructureLocation.SUFFIX, 3, 20);
 		for (String s : words) {
 			System.out.println(s);
 		}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SmallWordKnowledgeSource {
+public class SmallWordKnowledgeSource extends WordStructureKnowledgeSource{
 
 	public static List<String> getWords(int numLetters, int numWords) throws FileNotFoundException {
 		List<String> ret = new ArrayList<String>();
@@ -24,7 +24,7 @@ public class SmallWordKnowledgeSource {
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		List<String> words = getWords(3, 20);
+		List<String> words = getWords(1, 2);
 		for (String s : words) {
 			System.out.println(s);
 		}
