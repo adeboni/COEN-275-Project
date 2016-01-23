@@ -1,12 +1,14 @@
+package knowledge;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
-public class SmallWordKnowledgeSource extends WordStructureKnowledgeSource{
+public class RegexWordKnowledgeSource extends WordStructureKnowledgeSource {
 
-	public static List<String> getWords(int numLetters, int numWords) throws FileNotFoundException {
+	public static List<String> getWords(String regex, int numWords) throws FileNotFoundException {
 		List<String> ret = new ArrayList<String>();
 		
 		Scanner s = new Scanner(new File("resources/words.txt"));
@@ -15,7 +17,7 @@ public class SmallWordKnowledgeSource extends WordStructureKnowledgeSource{
 		s.close();
 		
 		for (int i = 0; i < dict.size(); i++) {
-			if (dict.get(i).length() == numLetters)
+			if (Pattern.matches(regex, dict.get(i)))
 				ret.add(dict.get(i));
 			if (ret.size() == numWords) break;
 		}
@@ -24,7 +26,7 @@ public class SmallWordKnowledgeSource extends WordStructureKnowledgeSource{
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		List<String> words = getWords(1, 2);
+		List<String> words = getWords(".*ll.*", 10);
 		for (String s : words) {
 			System.out.println(s);
 		}

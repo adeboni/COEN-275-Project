@@ -1,3 +1,4 @@
+package knowledge;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class WordStructureKnowledgeSource extends WordKnowledgeSource {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		WordStructureKnowledgeSource wordStructureKnowledgeSource = new WordStructureKnowledgeSource();
-		List<String> words = wordStructureKnowledgeSource.getWords(StructureLocation.SUFFIX, 3, 20);
+		List<String> words = wordStructureKnowledgeSource.getWords(StructureLocation.PREFIX, 3, 20);
 		for (String s : words) {
 			System.out.println(s);
 		}
