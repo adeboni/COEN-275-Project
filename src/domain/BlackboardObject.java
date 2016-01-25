@@ -8,6 +8,8 @@ public abstract class BlackboardObject extends Dependent {
      */
     public final void register() {
         // TODO
+        // get blackboard
+        // blackboard.add(this);
     }
 
     /**
@@ -17,5 +19,7 @@ public abstract class BlackboardObject extends Dependent {
      */
     public final void resign() {
         // TODO
+        // get blackboard
+        // blackboard.remove(this);
      }
 }

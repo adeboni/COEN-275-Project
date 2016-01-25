@@ -17,16 +17,29 @@ public class Blackboard {
    
    List<BlackboardObject> lst;
    
+   /* This function is the default constructor.
+    *     Input: none
+    *    Output: none
+    */
+
    public Blackboard() {
       lst = new ArrayList<BlackboardObject>();
    }
    
+   /* This function resets the blackboard.
+    *     Input: sentence string
+    *    Output: none
+    */
+
    public void reset() {
       lst.clear();
    }
    
+   /* This function asserts the problem onto the blackboard.
+    *     Input: sentence string
+    *    Output: none
+    */
    public void assertProblem(String cipherStr) {
-      // TODO: place initial problem onto the blackboard
       Sentence s;
       List<Word> words;
       List<CipherLetter> letters;
@@ -49,22 +62,66 @@ public class Blackboard {
       }
       
       // register everything onto blackboard
+      registerObjects(s);
    }
    
    public void connect() {
       // TODO: attach the knowledge source to the blackboard
    }
    
+   /* This function returns whether the problem is solved or not.
+    *     Input: none
+    *    Output: true if problem is solved, else false
+    */
    public boolean isSolved() {
-      // TODO
+      for (BlackboardObject obj: lst) {
+         if (obj.getClass().equals(Sentence.class)) {
+            return ((Sentence) obj).isSolved();
+         }
+      }
+      
       return false;
    }
    
-   public String retrieveSolution() {
-      // TODO
-      return "todo";
+   /* This function retrieves the solution from the blackboard if it is solved.
+    *     Input: none
+    *    Output: the solution sentence
+    */
+   public Sentence retrieveSolution() {
+      Sentence s;
+      
+      for (BlackboardObject obj: lst) {
+         if (obj.getClass().equals(Sentence.class)) {
+            s = (Sentence) obj;
+            if (s.isSolved()) {
+               return s;
+            }
+         }
+      }
+      
+      return null; 
    }
    
+   /* This function adds the object onto the blackboard.
+    *     Input: object
+    *    Output: none
+    */
+   public void add(BlackboardObject obj) {
+      lst.add(obj);
+   }
+   
+   /* This function removes the object from the blackboard.
+    *     Input: object
+    *    Output: none
+    */
+   public void remove(BlackboardObject obj) {
+      lst.remove(obj);
+   }
+   
+   /* This function splits the sentence into a list of words.
+    *     Input: sentence
+    *    Output: list of words
+    */
    private List<Word> splitSentence(Sentence s) {
       StringTokenizer toker;
       List<Word> words;
@@ -86,8 +143,44 @@ public class Blackboard {
       return words;
    }
    
+   /* This function splits the word into a list of cipher letters.
+    *     Input: word
+    *    Output: list of cipher letters
+    */
    private List<CipherLetter> splitWord(Word w) {
-      // TODO
-      return null;
+      List<CipherLetter> letters;
+      CipherLetter c;
+      String str;
+
+      str = w.value();
+      letters = new ArrayList<CipherLetter>();
+      for (int i = 0; i < str.length(); ++i) {
+         c = new CipherLetter(str.charAt(i));
+         letters.add(c);
+      }
+      
+      return letters;
+   }
+   
+   /* This function registers the objects generated from the problem to the
+    * blackboard.
+    *     Input: sentence
+    *    Output: none
+    */
+   private void registerObjects(Sentence s) {
+      List<Word> words;
+      List<CipherLetter> letters;
+      
+      s.register();
+      
+      words = s.getWords();
+      for (Word w: words) {
+         w.register();
+         
+         letters = w.getLetters();
+         for (CipherLetter c: letters) {
+            c.register();
+         }
+      }
    }
 }
