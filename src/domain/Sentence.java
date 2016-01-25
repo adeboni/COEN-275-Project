@@ -1,6 +1,5 @@
 package domain;
- 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class Sentence extends BlackboardObject {
@@ -8,7 +7,7 @@ public class Sentence extends BlackboardObject {
     /**
      * Collection of words that make up the sentence
      */
-    protected List<Word> words = new ArrayList<Word>(); // collection of words
+    protected List<Word> words;
 
     /**
      * Attribute sentence
@@ -19,6 +18,7 @@ public class Sentence extends BlackboardObject {
      * Default constructor
      */
     public Sentence() {
+        this("");
     }
 
     /**
@@ -27,8 +27,9 @@ public class Sentence extends BlackboardObject {
      * @param sentence
      *            the sentence string
      */
-    public Sentence(final String sentence) {
+    public Sentence(String sentence) {
         this.sentence = sentence;
+        words = null;
     }
 
     /**
@@ -46,33 +47,12 @@ public class Sentence extends BlackboardObject {
      * @return boolean true if solved
      */
     public boolean isSolved() {
-
-        boolean result = false;
-        int countTrue = 0;
-
-        // if each word has been solved, naturally the sentence has been solved
-        List<Word> list = this.getWords();
-        int count = list.size();
-
-        for (Word word : list) {
-            if (word.isSolved()) {
-                countTrue++;
+        for (Word w: words) {
+            if (!w.isSolved()) {
+                return false;
             }
         }
-
-        if (count == countTrue) {
-            result = true;
-        }
-
-        return result;
-    }
-
-    /**
-     * @param words
-     *            the words to set
-     */
-    public void setWords(List<Word> words) {
-        this.words = words;
+        return true;
     }
 
     /**
@@ -90,10 +70,18 @@ public class Sentence extends BlackboardObject {
     }
 
     /**
-     * @param sentence the sentence to set
+     * @param words
+     *            the words to set
+     */
+    public void setWords(List<Word> words) {
+        this.words = words;
+    }
+
+    /**
+     * @param sentence
+     *            the sentence to set
      */
     public void setSentence(String sentence) {
         this.sentence = sentence;
     }
-
 }

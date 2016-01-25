@@ -1,15 +1,13 @@
 package domain;
 
-
-public abstract class BlackboardObject {
+public abstract class BlackboardObject extends Dependent {
 
     /**
      * Each blackboard object adds itself or registers with the blackboard. Each
      * object also represents itself within the blackboard domain.
      */
     public final void register() {
-        
-        
+        // TODO
     }
 
     /**
@@ -18,8 +16,6 @@ public abstract class BlackboardObject {
      * an {@link Alphabet} or plaintext equivalent to be its representative
      */
     public final void resign() {
-        
-        
-    }
-
+        // TODO
+     }
 }

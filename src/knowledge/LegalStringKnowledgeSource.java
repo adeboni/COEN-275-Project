@@ -1,4 +1,4 @@
-/* coen275proj.KS.LegalStringKnowledgeSource
+/* src/knowledge/LegalStringKnowledgeSource
  * ------------------------------
  * Written by: Sui Fung Alex Wong
  *       Date: Jan 23, 2016
