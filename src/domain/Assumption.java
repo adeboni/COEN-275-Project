@@ -16,6 +16,14 @@ public class Assumption extends BlackboardObject {
    private char cipherLetter;
    
    /**
+    * Default constructor
+    */
+   public Assumption() {
+      target = null;
+      creator = null;
+   }
+   
+   /**
     * @return true
     *             as Assumption is always retractable
     */

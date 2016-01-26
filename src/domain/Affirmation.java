@@ -1,7 +1,7 @@
 /* src/domain/Affirmation
  * ------------------------------
  * Written by: Sui Fung Alex Wong
- *       Date: Jan 23, 2016
+ *       Date: Jan 25, 2016
  */
 
 package domain;
@@ -10,38 +10,21 @@ import java.util.Stack;
 
 public class Affirmation {
 
-   private Assumption assumptionStatement;
-   private Assertion assertionStatement;
-   protected Stack<Assumption> statements;
+   private Stack<Assumption> statements;
    
    public Affirmation() {
-      assumptionStatement = null;
-      assertionStatement = null;
       statements = new Stack<Assumption>();
    }
    
-   public void makeAssumption(Assumption a) {
-      assumptionStatement = a;
+   public void make(Assumption a) {
       statements.push(a);
    }
    
-   public void makeAssertion(Assertion a) {
-      assertionStatement = a;
-   }
-   
-   public Assumption retractAssumption() {
-      assumptionStatement = null;
+   public Assumption retract() {
       return statements.pop();
    }
    
-   public Assertion retractAssertion() {
-      Assertion a;
-      a = assertionStatement;
-      assertionStatement = null;
-      return a;
-   }
-   
-   public char ciphertext() {
+   char ciphertext() {
       // TODO
       return 'A';
    }
@@ -77,5 +60,13 @@ public class Affirmation {
    
    public Assumption statementAt(int i) {
       return statements.get(i);
+   }
+   
+   public Stack<Assumption> getStatements() {
+      return statements;
+   }
+   
+   public void setStatements(Stack<Assumption> statements) {
+      this.statements = statements;
    }
 }

@@ -7,6 +7,7 @@
 package domain;
 
 import java.util.List;
+import java.util.Stack;
 
 public class Word extends BlackboardObject {
 
@@ -49,8 +50,12 @@ public class Word extends BlackboardObject {
     *    Output: true if word is solved, else false
     */
    public boolean isSolved() {
-      // TODO
-      return false;
+      for (CipherLetter c: letters) {
+         if (!c.isSolved()) {
+            return false;
+         }
+      }
+      return true;
    }
    
    /* This function returns the sentence of the word.

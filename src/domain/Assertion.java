@@ -8,6 +8,13 @@ package domain;
 
 public class Assertion extends Assumption {
    /**
+    * Default constructor
+    */
+   public Assertion() {
+      super();
+   }
+
+   /**
     * @return false
     *             as Assertion is not retractable
     */

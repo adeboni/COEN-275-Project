@@ -17,20 +17,17 @@ public class Blackboard {
    
    List<BlackboardObject> lst;
    
-   /* This function is the default constructor.
-    *     Input: none
-    *    Output: none
+   /**
+    * Default constructor
     */
 
    public Blackboard() {
       lst = new ArrayList<BlackboardObject>();
    }
    
-   /* This function resets the blackboard.
-    *     Input: sentence string
-    *    Output: none
+   /**
+    * This function resets the blackboard.
     */
-
    public void reset() {
       lst.clear();
    }
