@@ -32,7 +32,8 @@ public class Blackboard {
       lst.clear();
    }
    
-   /* This function asserts the problem onto the blackboard.
+   /**
+    * This function asserts the problem onto the blackboard.
     *     Input: sentence string
     *    Output: none
     */
@@ -66,7 +67,8 @@ public class Blackboard {
       // TODO: attach the knowledge source to the blackboard
    }
    
-   /* This function returns whether the problem is solved or not.
+   /**
+    * This function returns whether the problem is solved or not.
     *     Input: none
     *    Output: true if problem is solved, else false
     */
@@ -80,7 +82,8 @@ public class Blackboard {
       return false;
    }
    
-   /* This function retrieves the solution from the blackboard if it is solved.
+   /**
+    * This function retrieves the solution from the blackboard if it is solved.
     *     Input: none
     *    Output: the solution sentence
     */
@@ -99,7 +102,8 @@ public class Blackboard {
       return null; 
    }
    
-   /* This function adds the object onto the blackboard.
+   /**
+    * This function adds the object onto the blackboard.
     *     Input: object
     *    Output: none
     */
@@ -107,7 +111,8 @@ public class Blackboard {
       lst.add(obj);
    }
    
-   /* This function removes the object from the blackboard.
+   /**
+    * This function removes the object from the blackboard.
     *     Input: object
     *    Output: none
     */
@@ -115,7 +120,8 @@ public class Blackboard {
       lst.remove(obj);
    }
    
-   /* This function splits the sentence into a list of words.
+   /**
+    * This function splits the sentence into a list of words.
     *     Input: sentence
     *    Output: list of words
     */
@@ -140,7 +146,8 @@ public class Blackboard {
       return words;
    }
    
-   /* This function splits the word into a list of cipher letters.
+   /**
+    * This function splits the word into a list of cipher letters.
     *     Input: word
     *    Output: list of cipher letters
     */
@@ -159,7 +166,8 @@ public class Blackboard {
       return letters;
    }
    
-   /* This function registers the objects generated from the problem to the
+   /**
+    * This function registers the objects generated from the problem to the
     * blackboard.
     *     Input: sentence
     *    Output: none

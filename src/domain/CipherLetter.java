@@ -6,8 +6,6 @@
 
 package domain;
 
-import java.util.Stack;
-
 public class CipherLetter extends BlackboardObject {
 
    protected char letter;
@@ -45,7 +43,7 @@ public class CipherLetter extends BlackboardObject {
     *    Output: true if the letter is solved, else false
     */
    public boolean isSolved() {
-      // look for the earliest assertion statement (near the top of the stack, 
+      // look for the latest assertion statement (near the top of the stack, 
       // the end of the vector) from affirmations
       for (int i = affirmations.getStatements().size(); i > 0; --i) {
          if (!affirmations.statementAt(i).isRetractable()) {

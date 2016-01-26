@@ -7,7 +7,6 @@
 package domain;
 
 import java.util.List;
-import java.util.Stack;
 
 public class Word extends BlackboardObject {
 
@@ -16,17 +15,19 @@ public class Word extends BlackboardObject {
    protected Word prev, next;
    protected String word;
 
-   /* This function is the default constructor.
-    *     Input: none
-    *    Output: none
+   /**
+    * Default constructor
     */
     public Word() {
        this("", null);
     }
 
-   /* This function is the constructor.
-    *     Input: word string
-    *    Output: none
+   /**
+    * Constructor
+    * @param w
+    *          the word string
+    * @param s
+    *          the Sentence corresponding to this word
     */
    public Word(String w, Sentence s) {
       letters = null;
@@ -36,18 +37,15 @@ public class Word extends BlackboardObject {
       word = w;
    }
    
-   /* This function returns the current value of the word.
-    *     Input: none
-    *    Output: the current value of the word
+   /**
+    * @return the current value of the world
     */
    public String value() {
       return word;
    }
    
-   /* This function return true if there is an assertion for every letter in the 
-    * word.
-    *     Input: none
-    *    Output: true if word is solved, else false
+   /**
+    * @return true if this word is solved, else false
     */
    public boolean isSolved() {
       for (CipherLetter c: letters) {
@@ -58,107 +56,98 @@ public class Word extends BlackboardObject {
       return true;
    }
    
-   /* This function returns the sentence of the word.
-    *     Input: none
-    *    Output: sentence of the word
+   /**
+    * @return the sentence of the word
     */
    public Sentence sentence() {
       return sentence;
    }
    
-   /* This function returns the previous word of this word.
-    *     Input: none
-    *    Output: the previous word of this word
+   /**
+    * @return the previous word of this word
     */
    public Word previous() {
       return prev;
    }
    
-   /* This function returns the next word of this word.
-    *     Input: none
-    *    Output: the next word of this word
+   /**
+    * @return the next word of this word
     */
    public Word next() {
       return next;
    }
-   
-   /* This function returns the list of cipher letters.
-    *     Input: none
-    *    Output: word
+
+   /**
+    * @return the letters
     */
    public List<CipherLetter> getLetters() {
       return letters;
    }
-   
-   /* This function returns the sentence of the word.
-    *     Input: none
-    *    Output: sentence
+
+   /**
+    * @param letters 
+    *             the letters to set
+    */
+   public void setLetters(List<CipherLetter> letters) {
+      this.letters = letters;
+   }
+
+   /**
+    * @return the sentence
     */
    public Sentence getSentence() {
       return sentence;
    }
-   
-   /* This function returns the previous word of this word.
-    *     Input: none
-    *    Output: previous word
+
+   /**
+    * @param sentence 
+    *             the sentence to set
+    */
+   public void setSentence(Sentence sentence) {
+      this.sentence = sentence;
+   }
+
+   /**
+    * @return the previous word of this word
     */
    public Word getPrevious() {
       return prev;
    }
-   
-   /* This function returns the next word of this word.
-    *     Input: none
-    *    Output: next word
+
+   /**
+    * @param prev 
+    *          the previous word of this word to set
+    */
+   public void setPrevious(Word prev) {
+      this.prev = prev;
+   }
+
+   /**
+    * @return the next word of this word
     */
    public Word getNext() {
       return next;
    }
-   
-   /* This function returns the word.
-    *     Input: none
-    *    Output: word
+
+   /**
+    * @param next 
+    *          the next word of this word to set
+    */
+   public void setNext(Word next) {
+      this.next = next;
+   }
+
+   /**
+    * @return the word
     */
    public String getWord() {
       return word;
    }
-   
-   /* This function sets the sentence of the word.
-    *     Input: sentence
-    *    Output: none
+
+   /**
+    * @param word the word to set
     */
-   public void setSentence(Sentence s) {
-      sentence = s;
-   }
-   
-   /* This function sets the previous word of this word.
-    *     Input: previous word
-    *    Output: none
-    */
-   public void setPrevious(Word w) {
-      prev = w;
-   }
-   
-   /* This function sets the next word of this word.
-    *     Input: next word
-    *    Output: none
-    */
-   public void setNext(Word w) {
-      next = w;
-   }
-   
-   /* This function sets the word.
-    *     Input: previous word
-    *    Output: none
-    */
-   public void setWord(String str) {
-      word = str;
-   }
-   
-   /* This function sets the list of cipher letters.
-    *     Input: list of cipher letters
-    *    Output: none
-    */
-   public void setLetters(List<CipherLetter> lst) {
-      letters = lst;
+   public void setWord(String word) {
+      this.word = word;
    }
 }
