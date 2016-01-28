@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import domain.Assumption;
 
 /**
  * Created by mickey.liu on 1/21/16.
@@ -42,4 +45,16 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
             System.out.println(s);
         }
     }
+
+	@Override
+	public void evaluate() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

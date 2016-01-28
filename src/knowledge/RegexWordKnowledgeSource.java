@@ -26,7 +26,7 @@ public class RegexWordKnowledgeSource extends WordStructureKnowledgeSource {
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		List<String> words = getWords(".*ll.*", 10);
+		List<String> words = getWords("to.e.", 10);
 		for (String s : words) {
 			System.out.println(s);
 		}
