@@ -15,7 +15,7 @@ public final class SentenceUtil {
         sentence.setSentence(tmp);
         return sentence;
     }
-
+    /*
     public static List<Word> getWords(final Sentence sentence) {
 
         StringTokenizer toker = new StringTokenizer(sentence.value());
@@ -29,7 +29,7 @@ public final class SentenceUtil {
 
         return words;
     }
-
+	*/
     /*
     public static List<Alphabet> getLetters(final Word word) {
 

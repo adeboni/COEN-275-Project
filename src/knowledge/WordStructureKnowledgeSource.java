@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import domain.Assumption;
 
 public class WordStructureKnowledgeSource extends WordKnowledgeSource {
 
@@ -42,6 +45,20 @@ public class WordStructureKnowledgeSource extends WordKnowledgeSource {
 		for (String s : words) {
 			System.out.println(s);
 		}
+	}
+
+
+	@Override
+	public void evaluate() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -11,6 +11,9 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import domain.Assumption;
 
 public class LegalStringKnowledgeSource extends StringKnowledgeSource {
 
@@ -59,4 +62,10 @@ public class LegalStringKnowledgeSource extends StringKnowledgeSource {
       LegalStringKnowledgeSource ks = new LegalStringKnowledgeSource();
       ks.evaluate();
    }
+
+@Override
+public ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
