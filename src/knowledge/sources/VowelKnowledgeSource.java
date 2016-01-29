@@ -1,7 +1,16 @@
 package knowledge.sources;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import blackboard.Blackboard;
+import blackboard.BlackboardContext;
+import domain.Assumption;
+import domain.Sentence;
+import domain.Word;
+import util.SentenceUtil;
 
 public class VowelKnowledgeSource extends LetterKnowledgeSource {
 
@@ -12,7 +21,12 @@ public class VowelKnowledgeSource extends LetterKnowledgeSource {
 
     @Override
     public void evaluate() {
-        // TODO Auto-generated method stub
+    	Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
+        Sentence sentence = blackboard.getSentence();
+        ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
+        List<Word> words = SentenceUtil.getWords(sentence);
+        
+        
     }
     
     public VowelKnowledgeSource() {

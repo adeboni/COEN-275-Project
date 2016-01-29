@@ -49,17 +49,14 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 	                    assertion.setPlainLetter(plainText);
 
 	                    queue.add(assertion);
-	                    this.setPastAssumptions(queue);
 	                    
 	                    System.out.println("The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
-	                    
-	                    return;
 	                }
             	}
             }
         }
         
-        
+        this.setPastAssumptions(queue);
     }
 
 

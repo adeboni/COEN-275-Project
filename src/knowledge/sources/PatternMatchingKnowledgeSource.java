@@ -5,7 +5,15 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.regex.Pattern;
+
+import blackboard.Blackboard;
+import blackboard.BlackboardContext;
+import domain.Assumption;
+import domain.Sentence;
+import domain.Word;
+import util.SentenceUtil;
 
 public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 	
@@ -17,6 +25,11 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 
     @Override
     public void evaluate() {
+    	Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
+        Sentence sentence = blackboard.getSentence();
+        ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
+        List<Word> words = SentenceUtil.getWords(sentence);
+        
         
     
     }

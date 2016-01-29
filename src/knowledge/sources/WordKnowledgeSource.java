@@ -1,6 +1,15 @@
 package knowledge.sources;
 
+import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import blackboard.Blackboard;
+import blackboard.BlackboardContext;
+import domain.Assumption;
+import domain.Sentence;
+import domain.Word;
 import knowledge.KnowledgeSource;
+import util.SentenceUtil;
 
 public class WordKnowledgeSource extends KnowledgeSource {
 
@@ -12,7 +21,12 @@ public class WordKnowledgeSource extends KnowledgeSource {
 
     @Override
     public void evaluate() {
-        // TODO Auto-generated method stub
+    	Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
+        Sentence sentence = blackboard.getSentence();
+        ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
+        List<Word> words = SentenceUtil.getWords(sentence);
+        
+        
     }
 
 }

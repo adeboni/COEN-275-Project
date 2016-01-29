@@ -7,6 +7,9 @@ import domain.Assumption;
 
 public abstract class KnowledgeSource {
 	
+    /**
+     * List of letters already tried by this knowledge source
+     */
 	protected HashSet<String> history = new HashSet<String>();
 
     /**
