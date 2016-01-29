@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import domain.Alphabet;
+import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
 
@@ -56,12 +57,12 @@ public final class SentenceUtil {
      * @return
      *      a List of cipher letter blackboard objects
      */
-    public static List<Alphabet> getLetters(final Word word) {
+    public static List<CipherLetter> getLetters(final Word word) {
 
-        ArrayList<Alphabet> letters = new ArrayList<Alphabet>();
+        ArrayList<CipherLetter> letters = new ArrayList<CipherLetter>();
 
         for (int i = 0; i < word.value().length(); i++) {
-            letters.add(new Alphabet(word.value().substring(i, i + 1)));
+            letters.add(new CipherLetter(word.value().substring(i, i + 1)));
         }
 
         return letters;

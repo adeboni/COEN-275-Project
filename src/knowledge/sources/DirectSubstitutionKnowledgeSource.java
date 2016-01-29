@@ -10,6 +10,7 @@ import blackboard.BlackboardContext;
 import domain.Alphabet;
 import domain.Assertion;
 import domain.Assumption;
+import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
 import util.SentenceUtil;
@@ -36,11 +37,11 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
         List<Word> words = SentenceUtil.getWords(sentence);
 
         for (Word word : words) {
-        	List<Alphabet> letters = SentenceUtil.getLetters(word);
+        	List<CipherLetter> letters = SentenceUtil.getLetters(word);
 
-            for (Alphabet letter : letters) {
+            for (CipherLetter letter : letters) {
             	for (String cipher : substitutions.keySet()) {
-	                if (letter.getCipherLetter().equals(cipher) && !history.contains(cipher)) {
+	                if (letter.value().equals(cipher) && !history.contains(cipher)) {
 	                	history.add(cipher);
 	                	String plainText = substitutions.get(cipher);
 	                    

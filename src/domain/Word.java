@@ -9,7 +9,7 @@ public class Word extends BlackboardObject {
     /**
      * List of letters that make up this word
      */
-    private List<Alphabet> letters = new ArrayList<Alphabet>();
+    private List<CipherLetter> letters = new ArrayList<CipherLetter>();
 
     /**
      * The string word
@@ -64,10 +64,10 @@ public class Word extends BlackboardObject {
         /**
          * Iterate over all letters, be sure there is an Assertion for each
          */
-        List<Alphabet> list = this.getLetters();
+        List<CipherLetter> list = this.getLetters();
         int count = list.size();
 
-        for (Alphabet letter : list) {
+        for (CipherLetter letter : list) {
             Stack<Assumption> stack = letter.getAffirmations().getStatements();
             for (int i = 0; i < stack.size(); i++) {
                 Assumption assumption = stack.pop();
@@ -92,7 +92,7 @@ public class Word extends BlackboardObject {
      * 
      * @param letters
      */
-    public void setLetters(List<Alphabet> letters) {
+    public void setLetters(List<CipherLetter> letters) {
         this.letters = letters;
     }
 
@@ -101,7 +101,7 @@ public class Word extends BlackboardObject {
      * 
      * @return list of cipher letters
      */
-    public List<Alphabet> getLetters() {
+    public List<CipherLetter> getLetters() {
         return letters;
     }
 

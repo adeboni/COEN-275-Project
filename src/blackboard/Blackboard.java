@@ -85,7 +85,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         sentence.setWords(words);
 
         for (Word word : words) {
-            List<Alphabet> letters = SentenceUtil.getLetters(word);
+            List<CipherLetter> letters = SentenceUtil.getLetters(word);
             word.setLetters(letters);
         }
     }
@@ -104,9 +104,9 @@ public class Blackboard extends ArrayList<BlackboardObject> {
 
             word.register();
 
-            List<Alphabet> letters = SentenceUtil.getLetters(word);
+            List<CipherLetter> letters = SentenceUtil.getLetters(word);
 
-            for (Alphabet letter : letters) {
+            for (CipherLetter letter : letters) {
                 letter.register();
             }
         }
@@ -155,10 +155,10 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         assumption.register();
 
         for (Word word : sentence.getWords()) {
-            for (Alphabet cipherLetter : word.getLetters()) {
-                if (cipherLetter.getCipherLetter().equals(assumption.getCipherLetter())) {
+            for (CipherLetter cipherLetter : word.getLetters()) {
+                if (cipherLetter.value().equals(assumption.getCipherLetter())) {
                 	
-                    cipherLetter.setPlainLetter(assumption.getPlainLetter());
+                    //cipherLetter.setPlainLetter(assumption.getPlainLetter());
                     Alphabet alphabet = new Alphabet(assumption.getCipherLetter());
                     alphabet.setPlainLetter(assumption.getPlainLetter());
                     alphabet.register();
@@ -166,7 +166,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
                     System.out.println("updateAffirmations-> " + alphabet.getCipherLetter() + "->" + alphabet.getPlainLetter());
 
                     alphabet.getAffirmations().getStatements().push(assumption);
-                    cipherLetter.getAffirmations().setCipherLetter(new CipherLetter(cipherLetter.getCipherLetter()));
+                    cipherLetter.getAffirmations().setCipherLetter(cipherLetter);
                     cipherLetter.getAffirmations().setSolvedLetter(alphabet);
                 }
             }
