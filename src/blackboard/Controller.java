@@ -5,6 +5,10 @@ import knowledge.KnowledgeSourcesImpl;
 
 public class Controller {
 
+	public enum ControllerState {
+		INITIALIZING, STUCK, EVALUATING, SOLVED
+	}
+		
     /**
      * Attribute active or current knowledge source
      */
