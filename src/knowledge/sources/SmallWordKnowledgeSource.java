@@ -30,23 +30,28 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
         List<Word> words = SentenceUtil.getWords(sentence);
         
         //TODO: remove this, this is just for demonstration
-        for (Word word : words) {
-        	if (word.value().equals("DSSC")) {               
-                Assertion assertion1 = new Assertion();
-                assertion1.setCipherLetter("D");
-                assertion1.setPlainLetter("S");
-                queue.add(assertion1);
-                
-                Assertion assertion2 = new Assertion();
-                assertion2.setCipherLetter("S");
-                assertion2.setPlainLetter("E");
-                queue.add(assertion2);
-                
-                Assertion assertion3 = new Assertion();
-                assertion3.setCipherLetter("C");
-                assertion3.setPlainLetter("N");
-                queue.add(assertion3);
-        	}
+        if (history.size() == 0) {
+	        for (Word word : words) {
+	        	if (word.value().equals("DSSC")) {               
+	                Assertion assertion1 = new Assertion();
+	                assertion1.setCipherLetter("D");
+	                assertion1.setPlainLetter("S");
+	                queue.add(assertion1);
+	                history.add("D");
+	                
+	                Assertion assertion2 = new Assertion();
+	                assertion2.setCipherLetter("S");
+	                assertion2.setPlainLetter("E");
+	                queue.add(assertion2);
+	                history.add("S");
+	                
+	                Assertion assertion3 = new Assertion();
+	                assertion3.setCipherLetter("C");
+	                assertion3.setPlainLetter("N");
+	                queue.add(assertion3);
+	                history.add("C");
+	        	}
+	        }
         }
         
         this.setPastAssumptions(queue);
