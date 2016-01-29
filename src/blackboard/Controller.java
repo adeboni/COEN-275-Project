@@ -105,8 +105,7 @@ public class Controller {
      * Private method for KnowledgeSource expert to have a turn at the
      * blackboard problem
      * 
-     * @param hint
-     *            the KnowledgeSource (or Expert) 
+     * @param the KnowledgeSource
      */
     private void visitBlackboard(KnowledgeSource ks) {
         blackboard = BlackboardContext.getInstance().getBlackboard();
@@ -116,8 +115,7 @@ public class Controller {
     /**
      * Private method to leave or disengage from the blackboard.
      * 
-     * @param hint
-     *            the KnowledgeSource (or Expert)
+     * @param the KnowledgeSource
      */
     private void leaveBlackboard(KnowledgeSource ks) {
         blackboard.disconnect(ks);
