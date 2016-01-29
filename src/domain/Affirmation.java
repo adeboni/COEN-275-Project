@@ -171,4 +171,8 @@ public class Affirmation {
     public boolean hasAssumption() {
         return _assumptions.size() > 0;
     }
+    
+    public Assumption mostRecent() {
+       return _assumptions.peek();
+    }
 }
