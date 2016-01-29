@@ -120,19 +120,12 @@ public class Controller {
     }
 
     /**
-     * Connect and manage the brain
+     * Public method to engage and load knowledge sources
      */
     public final void connect() {
-        engage();
+    	knowledgeSources.init();
     }
-    /**
-     * Public method to engage and load knowledge sources (intelligence)
-     */
-    public void engage() {
-    	 knowledgeSources.init();
-    }
-
-
+    
     /**
      * @return the knowledgeSources
      */
