@@ -1,5 +1,7 @@
 package domain;
 
+import blackboard.BlackboardContext;
+
 public abstract class BlackboardObject extends Dependent {
 
     /**
@@ -7,7 +9,7 @@ public abstract class BlackboardObject extends Dependent {
      * object also represents itself within the blackboard domain.
      */
     public final void register() {
-        // TODO
+        BlackboardContext.getInstance().getBlackboard().add(this);
     }
 
     /**
@@ -16,6 +18,7 @@ public abstract class BlackboardObject extends Dependent {
      * an {@link Alphabet} or plaintext equivalent to be its representative
      */
     public final void resign() {
-        // TODO
-     }
+        BlackboardContext.getInstance().getBlackboard().remove(this);
+    }
+
 }

@@ -1,5 +1,10 @@
 package domain;
 
-public class Assertion {
-   // TODO
+public class Assertion extends Assumption {
+
+    @Override
+    public final boolean isRetractable() {
+        return false;
+    }
+
 }

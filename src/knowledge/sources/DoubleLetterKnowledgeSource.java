@@ -1,18 +1,22 @@
-package knowledge;
+package knowledge.sources;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
-import domain.Assumption;
-
-/**
- * Created by mickey.liu on 1/21/16.
- */
 public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
+
+    @Override
+    public String toString() {
+        return "DoubleLetterKnowledgeSource";
+    }
+
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+    }
 
     public List<String> doubleLetter(String word, int numWords) throws FileNotFoundException {
         //if Two back to back same letters in the middle of the a word are likely 2 vowels > "EE" or "OO" especially in a 4 char word
@@ -45,16 +49,4 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
             System.out.println(s);
         }
     }
-
-	@Override
-	public void evaluate() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

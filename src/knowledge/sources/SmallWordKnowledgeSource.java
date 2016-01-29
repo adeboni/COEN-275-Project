@@ -1,13 +1,24 @@
-package knowledge;
+package knowledge.sources;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SmallWordKnowledgeSource extends WordStructureKnowledgeSource {
+public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
-	public static List<String> getWords(int numLetters, int numWords) throws FileNotFoundException {
+    @Override
+    public String toString() {
+        return "SmallWordKnowledgeSource";
+    }
+
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+    }
+    
+    public static List<String> getWords(int numLetters, int numWords) throws FileNotFoundException {
 		List<String> ret = new ArrayList<String>();
 		
 		Scanner s = new Scanner(new File("resources/words.txt"));

@@ -1,51 +1,82 @@
-/* src/domain/Dependent
- * ------------------------------
- * Written by: Sui Fung Alex Wong
- *       Date: Jan 21, 2016
- */
-
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import knowledge.KnowledgeSource;
 
+
 public abstract class Dependent {
 
-   List<KnowledgeSource> references = new ArrayList<KnowledgeSource>();
+    /**
+     * Attribute collection of participating experts, thinkers, or general
+     * consults.
+     */
+    protected List<KnowledgeSource> references = new ArrayList<KnowledgeSource>();
 
-   /* This function adds the KnowledgeSource ks into the list of references.
-    *     Input: Knowledge Source 
-    *    Output: none
-    */
-   public void add(KnowledgeSource ks) {
-      references.add(ks);
-   }
-   
-   /* This function removes the KnowledgeSource ks from the list of references.
-    *     Input: Knowledge Source 
-    *    Output: none
-    */
-   public void remove(KnowledgeSource ks) {
-      references.remove(ks);
-   }
-   
-   /* This function returns the size of the list of references.
-    *     Input: none
-    *    Output: size of the list of references
-    */
-   public int numberOfDependents() {
-      return references.size();
-   }
-   
-   /* This function broadcast an operation of each dependent.
-    *     Input: dependentId, operation
-    *    Output: none
-    */
-   public void notify(String dependentId, String opeartion) {
-      // TODO
-      // 1) Forward Chaining
-      // 2) Reverse Chaining
-   }
+    /**
+     * Public method to add a new knowledge source reference
+     * 
+     * @param ref
+     *    the {@link knowledge.KnowledgeSource} reference
+     * @return true if success
+     */
+    public boolean addReference(KnowledgeSource ref) {
+        return references.add(ref);
+    }
+
+    /**
+     * Public method to return the number of knowledge source references
+     * 
+     * @return integer number of references
+     */
+    public int numberOfReferences() {
+        return references.size();
+    }
+
+    /**
+     * Public method to remove a knowledge source reference
+     * 
+     * @param ref
+     *   the {@link knowledge.KnowledgeSource} reference
+     * @return true if success
+     */
+    public boolean removeReference(KnowledgeSource ref) {
+        return references.remove(ref);
+    }
+
+    public enum Direction {
+    	FORWARD, REVERSE
+    }
+    
+    public void notify(Direction direction, Assumption statement) {
+        
+        /**
+         * Forward chaining Knowledge Sources
+         */
+        if (direction == Direction.FORWARD) {
+            for (KnowledgeSource knowledgeSource : references) {
+                knowledgeSource.getPastAssumptions().add(statement);
+            }
+        }
+        
+        /**
+         * Reverse chaining Knowledge Sources
+         */
+        if (direction == Direction.REVERSE) {
+            for (KnowledgeSource knowledgeSource : references) {
+                ConcurrentLinkedQueue<Assumption> queue = knowledgeSource.getPastAssumptions();
+                Iterator<Assumption> iter = queue.iterator();
+                while (iter.hasNext()) {
+                    Assumption stmt = (Assumption) iter.next();
+                    if (stmt.equals(statement)) {
+                        iter.remove();
+                    }
+                }
+            }
+        } 
+    }
+
 }

@@ -1,13 +1,15 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class Sentence extends BlackboardObject {
 
     /**
      * Collection of words that make up the sentence
      */
-    protected List<Word> words;
+    protected List<Word> words = new ArrayList<Word>(); 
 
     /**
      * Attribute sentence
@@ -18,7 +20,6 @@ public class Sentence extends BlackboardObject {
      * Default constructor
      */
     public Sentence() {
-        this("");
     }
 
     /**
@@ -27,9 +28,8 @@ public class Sentence extends BlackboardObject {
      * @param sentence
      *            the sentence string
      */
-    public Sentence(String sentence) {
+    public Sentence(final String sentence) {
         this.sentence = sentence;
-        words = null;
     }
 
     /**
@@ -47,12 +47,32 @@ public class Sentence extends BlackboardObject {
      * @return boolean true if solved
      */
     public boolean isSolved() {
-        for (Word w: words) {
-            if (!w.isSolved()) {
-                return false;
+
+        boolean result = false;
+        int countTrue = 0;
+
+        List<Word> list = this.getWords();
+        int count = list.size();
+
+        for (Word word : list) {
+            if (word.isSolved()) {
+                countTrue++;
             }
         }
-        return true;
+
+        if (count == countTrue) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    /**
+     * @param words
+     *            the words to set
+     */
+    public void setWords(List<Word> words) {
+        this.words = words;
     }
 
     /**
@@ -70,18 +90,10 @@ public class Sentence extends BlackboardObject {
     }
 
     /**
-     * @param words
-     *            the words to set
-     */
-    public void setWords(List<Word> words) {
-        this.words = words;
-    }
-
-    /**
-     * @param sentence
-     *            the sentence to set
+     * @param sentence the sentence to set
      */
     public void setSentence(String sentence) {
         this.sentence = sentence;
     }
+
 }

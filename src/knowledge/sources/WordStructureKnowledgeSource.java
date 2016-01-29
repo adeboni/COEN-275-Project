@@ -1,16 +1,24 @@
-package knowledge;
+package knowledge.sources;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
-import domain.Assumption;
 
 public class WordStructureKnowledgeSource extends WordKnowledgeSource {
 
-	public static enum StructureLocation {
+    @Override
+    public String toString() {
+        return "WordStructureKnowledgeSource";
+    }
+ 
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+    }
+
+    public static enum StructureLocation {
 		PREFIX,
 		SUFFIX
 	}
@@ -46,19 +54,4 @@ public class WordStructureKnowledgeSource extends WordKnowledgeSource {
 			System.out.println(s);
 		}
 	}
-
-
-	@Override
-	public void evaluate() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

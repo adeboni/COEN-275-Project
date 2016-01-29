@@ -1,4 +1,5 @@
-package knowledge;
+package knowledge.sources;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -6,9 +7,21 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class RegexWordKnowledgeSource extends WordStructureKnowledgeSource {
+public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
+	
+    @Override
+    public String toString() {
+        return "PatternMatchingKnowledgeSource";
+    }
 
-	public static List<String> getWords(String regex, int numWords) throws FileNotFoundException {
+
+    @Override
+    public void evaluate() {
+        
+    
+    }
+    
+    public static List<String> getWords(String regex, int numWords) throws FileNotFoundException {
 		List<String> ret = new ArrayList<String>();
 		
 		Scanner s = new Scanner(new File("resources/words.txt"));
@@ -31,5 +44,5 @@ public class RegexWordKnowledgeSource extends WordStructureKnowledgeSource {
 			System.out.println(s);
 		}
 	}
-
+  
 }

@@ -1,14 +1,49 @@
 package knowledge;
 
+import java.util.HashSet;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import domain.Assumption;
 
-/**
- * Created by mickey.liu on 1/21/16.
- */
-public interface KnowledgeSource {
-	void evaluate();
+public abstract class KnowledgeSource {
 	
-	ConcurrentLinkedQueue<Assumption> getPastAssumptions();
+	protected HashSet<String> history = new HashSet<String>();
+
+    /**
+     * Attribute queue of assumptions made by KnowledgeSource
+     */
+    protected ConcurrentLinkedQueue<Assumption> pastAssumptions = new ConcurrentLinkedQueue<Assumption>();
+    
+    /**
+     * Evaluate sentence and provide expertise
+     * @param sentence
+     *   the domain problem {@link domain.Sentence}
+     */
+    public abstract void evaluate();
+
+    /**
+     * @param pastAssumptions 
+     *   the collection of pastAssumptions to set
+     */
+    public void setPastAssumptions(ConcurrentLinkedQueue<Assumption> pastAssumptions) {
+        this.pastAssumptions = pastAssumptions;
+    }
+
+    /**
+     * @return the pastAssumptions
+     */
+    public ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
+        return pastAssumptions;
+    }
+
+    /**
+     * Reset knowledge source clearing all past assumptions
+     */
+    public void reset() {
+        pastAssumptions.clear();
+        history.clear();
+    }
+       
+    public abstract String toString();
+    
 }

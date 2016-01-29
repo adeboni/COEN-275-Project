@@ -2,89 +2,80 @@ package knowledge;
 
 import java.util.ArrayList;
 
+import knowledge.sources.CommonPrefixKnowledgeSource;
+import knowledge.sources.CommonSuffixKnowledgeSource;
+import knowledge.sources.ConsonantKnowledgeSource;
+import knowledge.sources.DirectSubstitutionKnowledgeSource;
+import knowledge.sources.DoubleLetterKnowledgeSource;
+import knowledge.sources.LegalStringKnowledgeSource;
+import knowledge.sources.LetterFrequencyKnowledgeSource;
+import knowledge.sources.PatternMatchingKnowledgeSource;
+import knowledge.sources.SentenceStructureKnowledgeSource;
+import knowledge.sources.SmallWordKnowledgeSource;
+import knowledge.sources.SolvedKnowledgeSource;
+import knowledge.sources.VowelKnowledgeSource;
+import knowledge.sources.WordStructureKnowledgeSource;
+
 public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements KnowledgeSources {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 719857338445596430L;
-
-	/**
-	 * Default constructor
-	 */
-	public KnowledgeSourcesImpl() {
-	}
-
-	/**
-	 * Public method to initialize all knowledge sources
-	 * 
-	 * @throws CollectionLoadingException
-	 */
-	public void init() {
-		loadKnowledgeSources();
-		initializeKnowledgeSources();
-	}
-
-	/**
-	 * Public method to clear and initialize all knowledge sources
-	 * 
-	 * @throws CollectionLoadingException
-	 */
-	public void reset() {
-
-		/**
-		 * Clear array
-		 */
-
-		this.clear();
-
-		/**
-		 * Load all Knowledge Sources
-		 */
-
-		loadKnowledgeSources();
-		initializeKnowledgeSources();
-
-	}
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -7058137814441379445L;
 
 
-	public void loadKnowledgeSources() {
+    /**
+     * Public method to initialize all knowledge sources
+     * 
+     * @throws CollectionLoadingException
+     */
+    public void init() {
+        loadKnowledgeSources();
+    }
 
-		RegexWordKnowledgeSource regexKnowledgeSource = new RegexWordKnowledgeSource();
-		addKS(regexKnowledgeSource);
+    /**
+     * Public method to clear and initialize all knowledge sources
+     * 
+     * @throws CollectionLoadingException
+     */
+    public void reset()  {
+        this.clear();
+        loadKnowledgeSources();
+    }
 
-		SmallWordKnowledgeSource smallWordKnowledgeSource = new SmallWordKnowledgeSource();
-		addKS(smallWordKnowledgeSource);
+    /**
+     * Private method to load this data structure with unique knowledge sources
+     */
+    public void loadKnowledgeSources() {
 
-		WordStructureKnowledgeSource wordStructureKnowledgeSource = new WordStructureKnowledgeSource();
-		addKS(wordStructureKnowledgeSource);
+    	//TODO: put this in order of priority
+    	
+    	addKS(new DirectSubstitutionKnowledgeSource());
+        addKS(new SentenceStructureKnowledgeSource());
+        addKS(new PatternMatchingKnowledgeSource());
+        addKS(new SmallWordKnowledgeSource());
+        addKS(new WordStructureKnowledgeSource());  
+        addKS(new LegalStringKnowledgeSource());
+        addKS(new DoubleLetterKnowledgeSource());
+        addKS(new CommonSuffixKnowledgeSource());
+        addKS(new CommonPrefixKnowledgeSource());
+        addKS(new LetterFrequencyKnowledgeSource());
+        addKS(new ConsonantKnowledgeSource());
+        addKS(new VowelKnowledgeSource());
+        addKS(new SolvedKnowledgeSource());
+    }
 
-		LegalStringKnowledgeSource legalStringKnowledgeSource = new LegalStringKnowledgeSource();
-		addKS(legalStringKnowledgeSource);
 
-		DoubleLetterKnowledgeSource doubleLetterKnowledgeSource = new DoubleLetterKnowledgeSource();
-		addKS(doubleLetterKnowledgeSource);
-
-	}
-
-	/**
-	 * Public method to iterate over all KnowledgeSources, load rules and
-	 * context
-	 */
-	public void initializeKnowledgeSources() {
-		for (KnowledgeSource knowledgeSource : this) {
-			loadRulesAndContext(knowledgeSource);
-		}
-	}
-
-	private void loadRulesAndContext(KnowledgeSource ks) {
-
-		// TODO
-
-	}
-
-	private void addKS(KnowledgeSource ks) {
-		this.add(ks);
-	}
+    /**
+     * Private method to add KnowledgeSources to itself
+     * 
+     * @param ks
+     *            the {@link knowledge.KnowledgeSource}
+     *            reference
+     * @throws CollectionLoadingException
+     */
+    private void addKS(KnowledgeSource ks) {
+    	this.add(ks);
+    }
 
 }

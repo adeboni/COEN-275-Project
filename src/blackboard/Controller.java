@@ -1,11 +1,7 @@
-import java.util.Collections;
-import java.util.concurrent.ConcurrentLinkedQueue;
+package blackboard;
 
-import domain.Assumption;
 import knowledge.KnowledgeSource;
-import knowledge.KnowledgeSources;
 import knowledge.KnowledgeSourcesImpl;
-
 
 public class Controller {
 
@@ -18,7 +14,7 @@ public class Controller {
      * Attribute collection and entire problem domain of knowledge sources
      */
     private final KnowledgeSourcesImpl knowledgeSources = new KnowledgeSourcesImpl();
-
+    
     /**
      * Attribute enum state of the controller
      */
@@ -33,9 +29,6 @@ public class Controller {
      * Public constructor
      */
     public Controller() {
-        /**
-         * State - initializing
-         */
         this.state = ControllerState.INITIALIZING;
     }
 
@@ -44,7 +37,6 @@ public class Controller {
      * 
      */
     public final void done() {
-        System.exit(0); // Temporary for testing
         state = ControllerState.SOLVED;
     }
 
@@ -54,13 +46,7 @@ public class Controller {
      * @return boolean primitive
      */
     public final boolean unableToProceed() {
-        boolean result = false;
-
-        if (state == ControllerState.STUCK) {
-            result = true;
-        }
-
-        return result;
+        return state == ControllerState.STUCK;
     }
 
     /**
@@ -69,14 +55,7 @@ public class Controller {
      * @return boolean primitive
      */
     public boolean isSolved() {
-
-        boolean result = false;
-
-        if (state == ControllerState.SOLVED) {
-            result = true;
-        }
-
-        return result;
+        return state == ControllerState.SOLVED;
     }
 
     /**
@@ -85,74 +64,79 @@ public class Controller {
      */
     public final void processNextHint() {
 
-        KnowledgeSourcesImpl knowledgeSources = (KnowledgeSourcesImpl) getKnowledgeSources();
+        KnowledgeSourcesImpl knowledgeSources = getKnowledgeSources();
 
-        //Collections.sort(knowledgeSources);
-
-        /**
-         * go thru ks experts and choose the best one to go to the blackboard
-         */
         for (KnowledgeSource ks : knowledgeSources) {
 
-            ks.evaluate();
+        	ks.evaluate();
             state = ControllerState.EVALUATING;
 
-            ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
-
-            if (queue.size() > 0) {
+            if (ks.getPastAssumptions().size() > 0) {
                 activeKnowledgeSource = ks;
                 break;
             }
 
         }
 
-
-        if (activeKnowledgeSource != null) {
-            visitBlackboard(activeKnowledgeSource);
-            leaveBlackboard(activeKnowledgeSource);
-            activeKnowledgeSource = null;
+        if (activeKnowledgeSource == null) {
+        	System.err.println("Not enough implemented knowledge sources!");
+        	System.exit(0);
         }
+        
+        System.out.println("processNextHint-> The " + activeKnowledgeSource.toString() + " is now active.");
 
+        visitBlackboard(activeKnowledgeSource);
+        leaveBlackboard(activeKnowledgeSource);
+        activeKnowledgeSource = null;
     }
 
-    /**
-     * Public reset method to null the brain and knowledge sources and create a
-     * new brain. Knowledge sources are not created until the engage() method on
-     * brain is called.
-     */
-    public final void reset() {
 
+    public final void reset() {
         activeKnowledgeSource = null;
         knowledgeSources.reset();
         state = ControllerState.INITIALIZING;
-
     }
 
+    /**
+     * Private method for KnowledgeSource expert to have a turn at the
+     * blackboard problem
+     * 
+     * @param hint
+     *            the KnowledgeSource (or Expert) 
+     */
     private void visitBlackboard(KnowledgeSource ks) {
-
-        //blackboard = BlackboardContext.getInstance().getBlackboard();
-        //blackboard.connect(ks);
-
+        blackboard = BlackboardContext.getInstance().getBlackboard();
+        blackboard.connect(ks);
     }
 
-
+    /**
+     * Private method to leave or disengage from the blackboard.
+     * 
+     * @param hint
+     *            the KnowledgeSource (or Expert)
+     */
     private void leaveBlackboard(KnowledgeSource ks) {
-        //blackboard.disconnect(ks);
+        blackboard.disconnect(ks);
     }
 
+    /**
+     * Connect and manage the brain
+     */
     public final void connect() {
         engage();
     }
-
+    /**
+     * Public method to engage and load knowledge sources (intelligence)
+     */
     public void engage() {
-    	knowledgeSources.init();
+    	 knowledgeSources.init();
     }
 
 
     /**
      * @return the knowledgeSources
      */
-    public KnowledgeSources getKnowledgeSources() {
+    public KnowledgeSourcesImpl getKnowledgeSources() {
         return knowledgeSources;
     }
 

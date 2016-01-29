@@ -1,5 +1,0 @@
-public class LetterKnowledgeSource implements KnowledgeSource {
-	public void Reset() {}
-	public void Evaluate() {}
-	public void Notify() {}
-}
