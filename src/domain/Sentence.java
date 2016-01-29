@@ -48,23 +48,15 @@ public class Sentence extends BlackboardObject {
      */
     public boolean isSolved() {
 
-        boolean result = false;
-        int countTrue = 0;
-
         List<Word> list = this.getWords();
-        int count = list.size();
 
         for (Word word : list) {
-            if (word.isSolved()) {
-                countTrue++;
+            if (!word.isSolved()) {
+                return false;
             }
         }
 
-        if (count == countTrue) {
-            result = true;
-        }
-
-        return result;
+        return true;
     }
 
     /**
