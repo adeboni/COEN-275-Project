@@ -5,7 +5,7 @@ import knowledge.KnowledgeSourcesImpl;
 
 public class Controller {
 
-	public enum ControllerState {
+	private enum ControllerState {
 		INITIALIZING, STUCK, EVALUATING, SOLVED
 	}
 		
