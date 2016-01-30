@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import blackboard.Blackboard;
 import blackboard.BlackboardContext;
 import domain.*;
+import domain.Dependent.Direction;
 import util.SentenceUtil;
 
 public class SmallWordKnowledgeSource extends WordKnowledgeSource {
@@ -37,6 +38,17 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
 				queue.add(assumption);
 
+				
+				Assumption assumption2 = new Assumption();
+
+				assumption2.setCipherLetter(word.value());
+				assumption2.setPlainLetter("A");
+
+				queue.add(assumption2);
+				
+				
+				assumption.notify(Direction.REVERSE, assumption2);
+				
 				history.add(word.value());
 			}
 		}

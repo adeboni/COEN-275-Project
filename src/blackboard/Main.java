@@ -2,7 +2,7 @@ package blackboard;
 
 public final class Main {
 
-    private static final String CODED_STRING = "Q AZVS DSSC KAS DXZNN DASNN";
+    private static final String CODED_STRING = "Q AZWS DSSC KAS DXZNN DASNN";
 
     public static void main(String[] args) {
 
