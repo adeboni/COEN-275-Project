@@ -9,11 +9,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
 import blackboard.BlackboardContext;
-import domain.Assertion;
-import domain.Assumption;
-import domain.Sentence;
-import domain.Word;
+import domain.*;
 import util.SentenceUtil;
+
+import javax.crypto.Cipher;
 
 public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
@@ -28,23 +27,38 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
-        
+
+		for (Word word : words) {
+			List<CipherLetter> letters = SentenceUtil.getLetters(word);
+
+			if (letters.size() == 1 && !history.contains(word.value())) {
+				Assertion assertion = new Assertion();
+
+				assertion.setCipherLetter(word.value());
+				assertion.setPlainLetter("A");
+
+				queue.add(assertion);
+
+				history.add(word.value());
+			}
+		}
+
+
         //TODO: remove this, this is just for demonstration
-        if (history.size() == 0) {
 	        for (Word word : words) {
-	        	if (word.value().equals("DSSC")) {               
+	        	if (word.value().equals("DSSC")) {
 	                Assertion assertion1 = new Assertion();
 	                assertion1.setCipherLetter("D");
 	                assertion1.setPlainLetter("S");
 	                queue.add(assertion1);
 	                history.add("D");
-	                
+
 	                Assertion assertion2 = new Assertion();
 	                assertion2.setCipherLetter("S");
 	                assertion2.setPlainLetter("E");
 	                queue.add(assertion2);
 	                history.add("S");
-	                
+
 	                Assertion assertion3 = new Assertion();
 	                assertion3.setCipherLetter("C");
 	                assertion3.setPlainLetter("N");
@@ -52,12 +66,13 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 	                history.add("C");
 	        	}
 	        }
-        }
+		this.setPastAssumptions(queue);
+	}
         
-        this.setPastAssumptions(queue);
-    }
+
+
     
-    public static List<String> getWords(int numLetters, int numWords) throws FileNotFoundException {
+    public List<String> getWords(int numLetters, int numWords) throws FileNotFoundException {
 		List<String> ret = new ArrayList<String>();
 		
 		Scanner s = new Scanner(new File("resources/words.txt"));
@@ -75,8 +90,8 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		List<String> words = getWords(4, 10);
-		for (String s : words) {
+		SmallWordKnowledgeSource smallWordKnowledgeSource = new SmallWordKnowledgeSource();
+		for (String s : smallWordKnowledgeSource.getWords(1, 10)) {
 			System.out.println(s);
 		}
 	}
