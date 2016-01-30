@@ -3,7 +3,6 @@ package util;
 import java.util.List;
 
 import blackboard.Blackboard;
-import domain.Alphabet;
 import domain.BlackboardObject;
 import domain.CipherLetter;
 import domain.Sentence;

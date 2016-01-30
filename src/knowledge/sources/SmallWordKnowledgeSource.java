@@ -12,8 +12,6 @@ import blackboard.BlackboardContext;
 import domain.*;
 import util.SentenceUtil;
 
-import javax.crypto.Cipher;
-
 public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
     @Override
@@ -32,12 +30,12 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 			List<CipherLetter> letters = SentenceUtil.getLetters(word);
 
 			if (letters.size() == 1 && !history.contains(word.value())) {
-				Assertion assertion = new Assertion();
+				Assumption assumption = new Assumption();
 
-				assertion.setCipherLetter(word.value());
-				assertion.setPlainLetter("A");
+				assumption.setCipherLetter(word.value());
+				assumption.setPlainLetter("I");
 
-				queue.add(assertion);
+				queue.add(assumption);
 
 				history.add(word.value());
 			}
@@ -45,27 +43,45 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
 
         //TODO: remove this, this is just for demonstration
-	        for (Word word : words) {
-	        	if (word.value().equals("DSSC")) {
-	                Assertion assertion1 = new Assertion();
-	                assertion1.setCipherLetter("D");
-	                assertion1.setPlainLetter("S");
-	                queue.add(assertion1);
-	                history.add("D");
+		{
+        	if (!history.contains("D")) {
+                Assertion assertion1 = new Assertion();
+                assertion1.setCipherLetter("D");
+                assertion1.setPlainLetter("S");
+                queue.add(assertion1);
+                history.add("D");
 
-	                Assertion assertion2 = new Assertion();
-	                assertion2.setCipherLetter("S");
-	                assertion2.setPlainLetter("E");
-	                queue.add(assertion2);
-	                history.add("S");
+                Assertion assertion2 = new Assertion();
+                assertion2.setCipherLetter("S");
+                assertion2.setPlainLetter("E");
+                queue.add(assertion2);
+                history.add("S");
 
-	                Assertion assertion3 = new Assertion();
-	                assertion3.setCipherLetter("C");
-	                assertion3.setPlainLetter("N");
-	                queue.add(assertion3);
-	                history.add("C");
-	        	}
-	        }
+                Assertion assertion3 = new Assertion();
+                assertion3.setCipherLetter("C");
+                assertion3.setPlainLetter("N");
+                queue.add(assertion3);
+                history.add("C");
+                
+                
+                
+                
+                
+                Assertion assertion4 = new Assertion();
+                assertion4.setCipherLetter("K");
+                assertion4.setPlainLetter("T");
+                queue.add(assertion4);
+                history.add("K");
+
+                Assertion assertion5 = new Assertion();
+                assertion5.setCipherLetter("A");
+                assertion5.setPlainLetter("H");
+                queue.add(assertion5);
+                history.add("A");
+        	}
+		}
+		
+		
 		this.setPastAssumptions(queue);
 	}
         

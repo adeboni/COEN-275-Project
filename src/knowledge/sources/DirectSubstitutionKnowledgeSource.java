@@ -7,7 +7,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
 import blackboard.BlackboardContext;
-import domain.Alphabet;
 import domain.Assertion;
 import domain.Assumption;
 import domain.CipherLetter;

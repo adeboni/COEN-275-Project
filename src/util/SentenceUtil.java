@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import domain.Alphabet;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
