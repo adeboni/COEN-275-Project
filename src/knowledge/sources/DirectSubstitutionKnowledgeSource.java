@@ -26,7 +26,7 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 		Scanner in = new Scanner(System.in);
 		while (true) {
 
-			System.out.print("Enter a direct substitution in the form x->y (or anything else to finish): ");
+			System.out.print("Enter a direct substitution in the form X->Y (or anything else to finish): ");
 			
 			try {
 				String[] text = in.nextLine().split("->");
