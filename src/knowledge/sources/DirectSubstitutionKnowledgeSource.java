@@ -3,6 +3,7 @@ package knowledge.sources;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
@@ -19,7 +20,24 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 	private final Map<String, String> substitutions = new HashMap<String, String>();
 	
 	public DirectSubstitutionKnowledgeSource() {
-		substitutions.put("W", "V");
+		//substitutions.put("W", "V");
+		
+		Scanner in = new Scanner(System.in);
+		while (true) {
+
+			System.out.print("Enter a direct substitution in the form x->y (or anything else to finish): ");
+			
+			try {
+				String[] text = in.nextLine().split("->");
+				substitutions.put(text[0], text[1]);
+			}
+			catch (Exception ex) {
+				in.close();
+				return;
+			}
+		
+		}
+		
 	}
 	
 		
