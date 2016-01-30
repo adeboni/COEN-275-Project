@@ -2,8 +2,6 @@ package domain;
 
 public class CipherLetter extends BlackboardObject {
 
-	private boolean _solved;
-
 	private String cipherLetter;
 	
     /**
@@ -23,14 +21,14 @@ public class CipherLetter extends BlackboardObject {
      * @return the solved
      */
     public boolean isSolved() {
-        return _solved;
-    }
-
-    /**
-     * @param solved the solved to set
-     */
-    public void setSolved(boolean solved) {
-        this._solved = solved;
+        // look for the latest assertion statement (near the top of the stack, 
+        // the end of the vector) from affirmations
+        for (int i = affirmations.getStatements().size(); i > 0; --i) {
+            if (!affirmations.statementAt(i).isRetractable()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

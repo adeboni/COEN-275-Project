@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class Word extends BlackboardObject {
 
@@ -50,41 +49,13 @@ public class Word extends BlackboardObject {
      * @return boolean true if solved
      */
     public boolean isSolved() {
-
-        /**
-         * Always use a local result
-         */
-        boolean result = false;
-
-        /**
-         * No. of true occurrences
-         */
-        int countTrue = 0;
-
-        /**
-         * Iterate over all letters, be sure there is an Assertion for each
-         */
-        List<CipherLetter> list = this.getLetters();
-        int count = list.size();
-
-        for (CipherLetter letter : list) {
-            Stack<Assumption> stack = letter.getAffirmations().getStatements();
-            for (int i = 0; i < stack.size(); i++) {
-                Assumption assumption = stack.pop();
-                if (!assumption.isRetractable()) {
-                    countTrue++;
-                }
-            }
+        for (CipherLetter letter : letters) {
+           if (!letter.isSolved()) {
+              return false;
+           }
         }
-
-        /**
-         * If the no. of true occurrences equals the no. of letters it's solved
-         */
-        if (count == countTrue) {
-            result = true;
-        }
-
-        return result;
+        
+        return true;
     }
 
     /**
