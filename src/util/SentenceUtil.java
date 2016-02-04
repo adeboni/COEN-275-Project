@@ -37,12 +37,20 @@ public final class SentenceUtil {
      *      a List of word blackboard objects
      */
     public static List<Word> getWords(final Sentence sentence) {
-
         StringTokenizer toker = new StringTokenizer(sentence.value());
-        ArrayList<Word> words = new ArrayList<Word>();
+        List<Word> words = new ArrayList<Word>();
+        Word prev, curr;
 
+        prev = null;
         while (toker.hasMoreTokens()) {
-            words.add(new Word(toker.nextToken()));
+            curr = new Word(toker.nextToken());
+            
+            curr.setPreviousWord(prev);
+            if (prev != null)
+                prev.setNextWord(curr);
+            
+            words.add(curr);
+            prev = curr;
         }
 
         return words;
