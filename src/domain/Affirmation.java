@@ -70,17 +70,15 @@ public class Affirmation {
      * @return boolean
      */
     public boolean isPlainLetterAsserted() {
-        boolean result = false;
-
         Stack<Assumption> stack = this._solvedLetter.getAffirmations().getStatements();
-        for (int i = 0; i < stack.size(); i++) {
-            Assumption assumption = stack.pop();
-            if (!assumption.isRetractable()) {
-                result = true;
+        
+        for (int i = stack.size(); i >= 0; --i) {
+            if (!stack.get(i).isRetractable()) {
+                return true;
             }
         }
 
-        return result;
+        return false;
     }
 
     /**
@@ -89,18 +87,15 @@ public class Affirmation {
      * @return boolean
      */
     public boolean isCipherLetterAsserted() {
-
-        boolean result = false;
-
         Stack<Assumption> stack = this._cipherLetter.getAffirmations().getStatements();
-        for (int i = 0; i < stack.size(); i++) {
-            Assumption assumption = stack.pop();
-            if (!assumption.isRetractable()) {
-                result = true;
+        
+        for (int i = stack.size(); i >= 0; --i) {
+            if (!stack.get(i).isRetractable()) {
+                return true;
             }
         }
 
-        return result;
+        return false;
     }
 
     /**
