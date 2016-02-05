@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Stack;
-
 public class Alphabet extends BlackboardObject {
 
     /**
@@ -33,7 +31,7 @@ public class Alphabet extends BlackboardObject {
     }
 
     public boolean isAsserted() {
-       for (int i = affirmations.getStatements().size(); i >= 0; --i) {
+       for (int i = affirmations.getStatements().size() - 1; i >= 0; --i) {
           if (!affirmations.statementAt(i).isRetractable()) {
               return true;
           }

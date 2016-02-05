@@ -23,7 +23,7 @@ public class CipherLetter extends BlackboardObject {
     public boolean isSolved() {
         // look for the latest assertion statement (near the top of the stack, 
         // the end of the vector) from affirmations
-        for (int i = affirmations.getStatements().size(); i > 0; --i) {
+        for (int i = affirmations.getStatements().size() - 1; i > 0; --i) {
             if (!affirmations.statementAt(i).isRetractable()) {
                 return true;
             }

@@ -72,7 +72,7 @@ public class Affirmation {
     public boolean isPlainLetterAsserted() {
         Stack<Assumption> stack = this._solvedLetter.getAffirmations().getStatements();
         
-        for (int i = stack.size(); i >= 0; --i) {
+        for (int i = stack.size() - 1; i >= 0; --i) {
             if (!stack.get(i).isRetractable()) {
                 return true;
             }
@@ -89,7 +89,7 @@ public class Affirmation {
     public boolean isCipherLetterAsserted() {
         Stack<Assumption> stack = this._cipherLetter.getAffirmations().getStatements();
         
-        for (int i = stack.size(); i >= 0; --i) {
+        for (int i = stack.size() - 1; i >= 0; --i) {
             if (!stack.get(i).isRetractable()) {
                 return true;
             }
