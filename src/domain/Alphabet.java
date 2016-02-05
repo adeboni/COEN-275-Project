@@ -33,16 +33,13 @@ public class Alphabet extends BlackboardObject {
     }
 
     public boolean isAsserted() {
-        boolean result = false;
-        Stack<Assumption> stack = getAffirmations().getStatements();
-        for (int i = 0; i < stack.size(); i++) {
-            Assumption assumption = stack.pop();
-            if (!assumption.isRetractable()) {
-                result = true;
-                
-            }
-        }
-        return result;
+       for (int i = affirmations.getStatements().size(); i >= 0; --i) {
+          if (!affirmations.statementAt(i).isRetractable()) {
+              return true;
+          }
+       }
+      
+      return false;
     }
 
 	/**
