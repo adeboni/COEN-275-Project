@@ -21,7 +21,7 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 	private final Map<String, String> substitutions = new HashMap<String, String>();
 	
 	public DirectSubstitutionKnowledgeSource() {
-		// substitutions.put("W", "V");
+		substitutions.put("W", "V");
 		substitutions.put("V", "B");
 		substitutions.put("G", "X");
 		

@@ -1,8 +1,10 @@
 package knowledge.sources;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -31,70 +33,68 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
         List<Word> words = SentenceUtil.getWords(sentence);
         List<CipherLetter> letters;
         String wordStr;
-        
+
         boolean found;
         int index;
         Assertion a;
-        
+
         // demo only
         for (Word word : words) {
-           letters = SentenceUtil.getLetters(word);
-           wordStr = word.value();
-           index = 0;
-           found = false;
-           for (int i = 0; i < wordStr.length() - 2; ++i) {
-              if (wordStr.charAt(i) == wordStr.charAt(i + 1)) {
-                 found = true;
-                 index = i;
-                 break;
-              }
-           }
-           
-           if (found) {
-              if (index != 0) { // middle
-                 a = new Assertion();
-                 a.setCipherLetter("S");
-                 a.setPlainLetter("E");
-                 queue.add(a);
-                 history.add("S");
-              }
-           }
+            letters = SentenceUtil.getLetters(word);
+            wordStr = word.value();
+            index = 0;
+            found = false;
+            for (int i = 0; i < wordStr.length() - 2; ++i) {
+                if (wordStr.charAt(i) == wordStr.charAt(i + 1)) {
+                    found = true;
+                    index = i;
+                    break;
+                }
+            }
+
+            if (found) {
+                if (index != 0) { // middle
+                    String firstLetterInMatch = null;
+                    try {
+                        firstLetterInMatch = doubleLetter().substring(0,1);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    Assumption assumption = new Assumption();
+                    assumption.setCipherLetter(Character.toString(wordStr.charAt(index)));
+                    assumption.setPlainLetter(firstLetterInMatch);
+
+                    queue.add(assumption);
+                    history.add(word.value());
+                }
+            }
         }
-        
+
         setPastAssumptions(queue);
     }
 
-    public List<String> doubleLetter(String word, int numWords) throws FileNotFoundException {
+    public String doubleLetter() throws FileNotFoundException {
         // if Two back to back same letters in the middle of the a word are likely 2 vowels > "EE" or "OO" especially in a 4 char word
+
         ArrayList<String> dict = new ArrayList<>();
-        List<String> ret = new ArrayList<String>();
-        boolean found = false;
-        
-        for (int i = 0; i < word.length() - 1; ++i) {
-            if (word.charAt(i) == word.charAt(i + 1)) {
-                found = true;
+        String doubleLetterString = null;
+
+        Scanner s = new Scanner(new File("resources/doubleLetters.txt"));
+        while (s.hasNext()) dict.add(s.next());
+        s.close();
+
+        //read dict ArrayList, if current line does not contain used char, return current line and break.
+
+        for (String st : dict) {
+            if (!history.contains(st.substring(0))) {
+                doubleLetterString = st;
                 break;
             }
         }
-        
-        if (found) {
-            Scanner s = new Scanner(new File("resources/doubleLetters.txt"));
-            while (s.hasNext()) dict.add(s.next());
-            s.close();
-        }
-        
-        for (int k = 0; k < numWords; ++k) {
-            ret.add(dict.get(k));
-        }
-        
-        return ret;
-    }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        DoubleLetterKnowledgeSource doubleLetterKnowledgeSource = new DoubleLetterKnowledgeSource();
-        List<String> words = doubleLetterKnowledgeSource.doubleLetter("Apple", 5);
-        for (String s : words) {
-            System.out.println(s);
-        }
+        return doubleLetterString.toUpperCase();
     }
 }
+
+
