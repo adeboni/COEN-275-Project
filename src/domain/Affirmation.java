@@ -164,7 +164,7 @@ public class Affirmation {
     }
 
     public boolean hasAssumption() {
-        return _assumptions.size() > 0;
+        return !_assumptions.empty();
     }
     
     public Assumption mostRecent() {

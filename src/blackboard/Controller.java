@@ -5,10 +5,10 @@ import knowledge.KnowledgeSourcesImpl;
 
 public class Controller {
 
-	private enum ControllerState {
-		INITIALIZING, STUCK, EVALUATING, SOLVED
-	}
-		
+    private enum ControllerState {
+        INITIALIZING, STUCK, EVALUATING, SOLVED
+    }
+
     /**
      * Attribute active or current knowledge source
      */
@@ -67,24 +67,19 @@ public class Controller {
      * blackboard problem string (repeatable method)
      */
     public final void processNextHint() {
-
-        KnowledgeSourcesImpl knowledgeSources = getKnowledgeSources();
-
         for (KnowledgeSource ks : knowledgeSources) {
-
-        	ks.evaluate();
+            ks.evaluate();
             state = ControllerState.EVALUATING;
 
             if (ks.getPastAssumptions().size() > 0) {
                 activeKnowledgeSource = ks;
                 break;
             }
-
         }
 
         if (activeKnowledgeSource == null) {
-        	System.err.println("Not enough implemented knowledge sources!");
-        	System.exit(0);
+            System.err.println("Not enough implemented knowledge sources!");
+            System.exit(0);
         }
         
         System.out.println("processNextHint-> The " + activeKnowledgeSource.toString() + " is now active.");
@@ -125,7 +120,7 @@ public class Controller {
      * Public method to engage and load knowledge sources
      */
     public final void connect() {
-    	knowledgeSources.init();
+        // knowledgeSources.init();
     }
     
     /**

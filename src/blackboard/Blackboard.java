@@ -17,14 +17,12 @@ import util.StringTrimmer;
 
 public class Blackboard extends ArrayList<BlackboardObject> {
 
+    /**
+    * Generated serialID
+    */
+    private static final long serialVersionUID = -8344157775909530435L;
 
     /**
-	 * Generated serialID
-	 */
-	private static final long serialVersionUID = -8344157775909530435L;
-
-
-	/**
      * Default constructor
      */
     public Blackboard() {
@@ -54,9 +52,6 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * @return boolean primitive
      */
     public final boolean isSolved() {
-
-        boolean result = false;
-
         Sentence sentence = getSentence();
 
         /**
@@ -64,48 +59,45 @@ public class Blackboard extends ArrayList<BlackboardObject> {
          * problem is solved.
          */
         if (sentence != null) {
-            result = sentence.isSolved();
+            return sentence.isSolved();
         }
-
-        return result;
-
+        return false;
     }
 
-
     public final void assertProblem(String code) {
+        Sentence sentence;
+
         code = StringTrimmer.trim(code);
-        Sentence sentence = new Sentence(code);
+        sentence = new Sentence(code);
         buildSentenceGraph(sentence);
         registerBlackboardObjects(sentence);
     }
 
     private void buildSentenceGraph(Sentence sentence) {
-
-        List<Word> words = SentenceUtil.getWords(sentence);
+        List<Word> words;
+        List<CipherLetter> letters;
+        
+        words = SentenceUtil.getWords(sentence);
         sentence.setWords(words);
 
         for (Word word : words) {
-            List<CipherLetter> letters = SentenceUtil.getLetters(word);
+            letters = SentenceUtil.getLetters(word);
             word.setLetters(letters);
         }
     }
 
     /**
-     * 
      * @param sentence
      */
     private void registerBlackboardObjects(Sentence sentence) {
+        List<Word> words;
+        List<CipherLetter> letters;
 
         sentence.register();
-
-        List<Word> words = SentenceUtil.getWords(sentence);
-
+        words = sentence.getWords();
         for (Word word : words) {
-
             word.register();
-
-            List<CipherLetter> letters = SentenceUtil.getLetters(word);
-
+            letters = word.getLetters();
             for (CipherLetter letter : letters) {
                 letter.register();
             }
@@ -151,21 +143,42 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * @param assumption
      */
     private void updateAffirmations(Sentence sentence, Assumption assumption) {
-
+        Alphabet alphabet;
+        
         assumption.register();
 
         for (Word word : sentence.getWords()) {
             for (CipherLetter cipherLetter : word.getLetters()) {
-                if (cipherLetter.value().equals(assumption.getCipherLetter())) {
-                	
+                if (assumption.isRemoveFlag()) {
+                    alphabet = cipherLetter.getAffirmations().getSolvedLetter();
+                    if (alphabet != null && alphabet.getAffirmations() != null 
+                          && alphabet.getAffirmations().hasAssumption() 
+                          && assumption.equals(alphabet.getAffirmations().mostRecent())) {
+                        alphabet.getAffirmations().pop();
+                        if (!alphabet.getAffirmations().hasAssumption()) {
+                            alphabet.getAffirmations().setCipherLetter(null);
+                            alphabet.getAffirmations().setSolvedLetter(null);
+                        }
+                    }
+                    if (cipherLetter.getAffirmations() != null 
+                          && cipherLetter.getAffirmations().hasAssumption() 
+                          && assumption.equals(cipherLetter.getAffirmations().mostRecent())) {
+                        cipherLetter.getAffirmations().pop();
+                        if (!cipherLetter.getAffirmations().hasAssumption()) {
+                            cipherLetter.getAffirmations().setCipherLetter(null);
+                            cipherLetter.getAffirmations().setSolvedLetter(null);
+                        }
+                    }
+                } else if (cipherLetter.value().equals(assumption.getCipherLetter())) {
                     //cipherLetter.setPlainLetter(assumption.getPlainLetter());
-                    Alphabet alphabet = new Alphabet(assumption.getCipherLetter());
+                    alphabet = new Alphabet(assumption.getCipherLetter());
                     alphabet.setPlainLetter(assumption.getPlainLetter());
                     alphabet.register();
 
                     System.out.println("updateAffirmations-> " + alphabet.getCipherLetter() + "->" + alphabet.getPlainLetter());
 
-                    alphabet.getAffirmations().getStatements().push(assumption);
+                    alphabet.getAffirmations().push(assumption);
+                    cipherLetter.getAffirmations().push(assumption);
                     cipherLetter.getAffirmations().setCipherLetter(cipherLetter);
                     cipherLetter.getAffirmations().setSolvedLetter(alphabet);
                 }

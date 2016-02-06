@@ -45,17 +45,15 @@ public final class Cryptographer {
      * @return solution as String
      */
     private String runController() {
-    	int maxTries = 100;
-    	for (int i = 0; i < maxTries; i++) {
-    		controller.processNextHint();
-
+        int maxTries = 3;
+        for (int i = 0; i < maxTries; ++i) {
+            controller.processNextHint();
             if (blackboard.isSolved()) {
                 controller.done();
                 return blackboard.retrieveSolution().value();
             }
-    	}
-    	
+        }
+        
         return "I could not decipher the asserted problem!";
     }
-
 }

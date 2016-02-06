@@ -2,19 +2,19 @@ package domain;
 
 public class CipherLetter extends BlackboardObject {
 
-	private String cipherLetter;
-	
+    private String cipherLetter;
+
     /**
      * Affirmation (statements) made against this cipher
      */
     protected Affirmation affirmations = new Affirmation();
-	
+
     public String value() {
         return cipherLetter;
     } 
     
     public CipherLetter(String letter) {
-    	cipherLetter = letter;
+        cipherLetter = letter;
     }
 
     /**
@@ -23,7 +23,7 @@ public class CipherLetter extends BlackboardObject {
     public boolean isSolved() {
         // look for the latest assertion statement (near the top of the stack, 
         // the end of the vector) from affirmations
-        for (int i = affirmations.getStatements().size() - 1; i > 0; --i) {
+        for (int i = affirmations.getStatements().size() - 1; i >= 0; --i) {
             if (!affirmations.statementAt(i).isRetractable()) {
                 return true;
             }

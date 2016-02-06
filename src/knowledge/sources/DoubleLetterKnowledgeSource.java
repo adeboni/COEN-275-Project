@@ -51,7 +51,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
            }
            
            if (found) {
-              if (index != 0 && index != wordStr.length() - 3) { // middle
+              if (index != 0) { // middle
                  a = new Assertion();
                  a.setCipherLetter("S");
                  a.setPlainLetter("E");
@@ -60,6 +60,8 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
               }
            }
         }
+        
+        setPastAssumptions(queue);
     }
 
     public List<String> doubleLetter(String word, int numWords) throws FileNotFoundException {

@@ -15,6 +15,8 @@ public class Assumption extends BlackboardObject {
     
     protected String plainLetter;
     
+    protected boolean removeFlag = false;
+    
     /**
      * Assumption is always retractable. Please note that an Assertion (extends)
      * is not retractable and therefore overrides this method and returns false
@@ -80,7 +82,7 @@ public class Assumption extends BlackboardObject {
     public void setTarget(BlackboardObject target) {
         this.target = target;
     }
-    
+
     /**
      * @param reason the reason to set
      */
@@ -94,5 +96,19 @@ public class Assumption extends BlackboardObject {
     public String getReason() {
         return reason;
     }
+
+   /**
+    * @return the removeFlag
+    */
+   public boolean isRemoveFlag() {
+      return removeFlag;
+   }
+
+   /**
+    * @param removeFlag the removeFlag to set
+    */
+   public void setRemoveFlag(boolean removeFlag) {
+      this.removeFlag = removeFlag;
+   }
 
 }

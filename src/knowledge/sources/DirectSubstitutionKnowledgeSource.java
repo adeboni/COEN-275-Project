@@ -13,6 +13,7 @@ import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
+import domain.Dependent.Direction;
 import util.SentenceUtil;
 
 public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
@@ -20,7 +21,9 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 	private final Map<String, String> substitutions = new HashMap<String, String>();
 	
 	public DirectSubstitutionKnowledgeSource() {
-		substitutions.put("W", "V");
+		// substitutions.put("W", "V");
+		substitutions.put("V", "B");
+		substitutions.put("G", "X");
 		
 		/*
 		Scanner in = new Scanner(System.in);
@@ -52,31 +55,36 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
         Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
-        List<Word> words = SentenceUtil.getWords(sentence);
+        List<Word> words = sentence.getWords();
 
         for (Word word : words) {
-        	List<CipherLetter> letters = SentenceUtil.getLetters(word);
+            List<CipherLetter> letters = word.getLetters();
 
             for (CipherLetter letter : letters) {
-            	for (String cipher : substitutions.keySet()) {
-	                if (letter.value().equals(cipher) && !history.contains(cipher)) {
-	                	history.add(cipher);
-	                	String plainText = substitutions.get(cipher);
-	                    
-	                    Assertion assertion = new Assertion();
-	                    assertion.setCipherLetter(cipher);
-	                    assertion.setPlainLetter(plainText);
+                for (String cipher : substitutions.keySet()) {
+                    if (letter.value().equals(cipher) && !history.contains(cipher)) {
+                        history.add(cipher);
+                        String plainText = substitutions.get(cipher);
 
-	                    queue.add(assertion);
-	                    
-	                    System.out.println("The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
-	                }
-            	}
+                        Assumption assumption = new Assumption();
+                        assumption.setCipherLetter(cipher);
+                        assumption.setPlainLetter(plainText);
+                        queue.add(assumption);
+                        assumption.notify(Direction.FORWARD, assumption);
+                        
+                        /*
+                        Assertion assertion = new Assertion();
+                        assertion.setCipherLetter(cipher);
+                        assertion.setPlainLetter(plainText);
+
+                        queue.add(assertion);
+                        assertion.notify(Direction.FORWARD, assertion);
+                        */
+                        System.out.println("The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
+                    }
+                }
             }
         }
-        
         this.setPastAssumptions(queue);
     }
-
-
 }
