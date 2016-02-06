@@ -45,8 +45,8 @@ public final class Cryptographer {
      * @return solution as String
      */
     private String runController() {
-        int maxTries = 3;
-        for (int i = 0; i < maxTries; ++i) {
+        int maxTries = 8;
+        for (int i = 0; i < 20; ++i) {
             controller.processNextHint();
             if (blackboard.isSolved()) {
                 controller.done();

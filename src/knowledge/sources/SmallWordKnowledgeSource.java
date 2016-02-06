@@ -55,7 +55,7 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
 
         //TODO: remove this, this is just for demonstration
-		{
+		/*{
         	if (!history.contains("D")) {
                 Assertion assertion1 = new Assertion();
                 assertion1.setCipherLetter("D");
@@ -92,7 +92,7 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
                 history.add("A");
         	}
 		}
-		
+		*/
 		
 		this.setPastAssumptions(queue);
 	}
