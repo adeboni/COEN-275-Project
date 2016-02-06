@@ -5,9 +5,9 @@ public class Alphabet extends BlackboardObject {
     /**
      * Affirmation (statements) made against this alphabet
      */
-    protected Affirmation affirmations = new Affirmation();
-	
-	/**
+    protected Affirmation affirmations;
+
+    /**
      * Attribute cipher letter knowledge
      */
     private String cipherLetter;
@@ -26,47 +26,55 @@ public class Alphabet extends BlackboardObject {
      * 
      * @param cipherLetter
      */
+    /*
     public Alphabet(final String cipherLetter) {
+        this(cipherLetter, new Affirmation());
+    }
+    */
+    public Alphabet(final String cipherLetter, Affirmation affirmations) {
         this.cipherLetter = cipherLetter;
+        this.plainLetter = null;
+        this.affirmations = affirmations;
     }
 
     public boolean isAsserted() {
-       for (int i = affirmations.getStatements().size() - 1; i >= 0; --i) {
-          if (!affirmations.statementAt(i).isRetractable()) {
-              return true;
-          }
-       }
-      
-      return false;
+        for (int i = affirmations.getStatements().size() - 1; i >= 0; --i) {
+            if (!affirmations.statementAt(i).isRetractable()) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
-	/**
-	 * @return the vowel
-	 */
-	public boolean isVowel() {
-		return vowel;
-	}
+    /**
+     * @return the vowel
+     */
+    public boolean isVowel() {
+        return vowel;
+    }
 
-	/**
-	 * @param vowel the vowel to set
-	 */
-	public void setVowel(boolean vowel) {
-		this.vowel = vowel;
-	}
+    /**
+     * @param vowel the vowel to set
+     */
+    public void setVowel(boolean vowel) {
+        this.vowel = vowel;
+    }
 
-	/**
-	 * @return the consonant
-	 */
-	public boolean isConsonant() {
-		return consonant;
-	}
+    /**
+     * @return the consonant
+     */
+    public boolean isConsonant() {
+        return consonant;
+    }
 
-	/**
-	 * @param consonant the consonant to set
-	 */
-	public void setConsonant(boolean consonant) {
-		this.consonant = consonant;
-	}
+    /**
+     * @param consonant the consonant to set
+     */
+    public void setConsonant(boolean consonant) {
+       this.consonant = consonant;
+    }
+
     /**
      * @return the cipherLetter
      */
@@ -96,7 +104,7 @@ public class Alphabet extends BlackboardObject {
     public void setPlainLetter(String plainLetter) {
         this.plainLetter = plainLetter;
     }
-    
+
     /**
      * @return the affirmations
      */
@@ -111,5 +119,4 @@ public class Alphabet extends BlackboardObject {
     public void setAffirmation(Affirmation affirmation) {
         this.affirmations = affirmation;
     }
-	
 }

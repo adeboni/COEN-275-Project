@@ -18,12 +18,22 @@ public class Affirmation {
     /**
      * Our stack of assumptions. Remember that assertions extend assumption
      */
-    private Stack<Assumption> _assumptions = new Stack<Assumption>();
+    private Stack<Assumption> _assumptions;
 
     /**
      * Default constructor
      */
+    /*
     public Affirmation() {
+       this(null);
+    }
+    */
+    public Affirmation(CipherLetter cipherLetter) {
+       this._cipherLetter = cipherLetter;
+       this._solvedLetter = new Alphabet(cipherLetter.value(), this);
+       this._assumptions = new Stack<Assumption>();
+       
+       this._solvedLetter.register();
     }
 
     public void push(Assumption assumption) {
@@ -46,6 +56,7 @@ public class Affirmation {
     public Assumption statementAt(int i) {
         return _assumptions.get(i);
     }
+    
     /**
      * Public method to get ciphertext (rarely, may not be finished)
      * 
@@ -105,7 +116,7 @@ public class Affirmation {
      * @return boolean
      */
     public boolean plainLetterHasAssumption() {
-        return this._solvedLetter.getAffirmations().getStatements().size() > 0;
+        return this._solvedLetter.getAffirmations().hasAssumption();
     }
 
     /**
@@ -115,7 +126,7 @@ public class Affirmation {
      * @return boolean
      */
     public boolean cipherLetterHasAssumption() {
-        return this._cipherLetter.getAffirmations().getStatements().size() > 0;
+        return this._cipherLetter.getAffirmations().hasAssumption();
     }
 
     /**

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import domain.Affirmation;
 import domain.Alphabet;
 import domain.Assumption;
 import domain.BlackboardObject;
@@ -143,44 +144,36 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * @param assumption
      */
     private void updateAffirmations(Sentence sentence, Assumption assumption) {
+        Affirmation affirmation;
         Alphabet alphabet;
         
         assumption.register();
 
         for (Word word : sentence.getWords()) {
             for (CipherLetter cipherLetter : word.getLetters()) {
-                if (assumption.isRemoveFlag()) {
-                    alphabet = cipherLetter.getAffirmations().getSolvedLetter();
-                    if (alphabet != null && alphabet.getAffirmations() != null 
-                          && alphabet.getAffirmations().hasAssumption() 
-                          && assumption.equals(alphabet.getAffirmations().mostRecent())) {
-                        alphabet.getAffirmations().pop();
-                        if (!alphabet.getAffirmations().hasAssumption()) {
-                            alphabet.getAffirmations().setCipherLetter(null);
-                            alphabet.getAffirmations().setSolvedLetter(null);
-                        }
-                    }
-                    if (cipherLetter.getAffirmations() != null 
-                          && cipherLetter.getAffirmations().hasAssumption() 
-                          && assumption.equals(cipherLetter.getAffirmations().mostRecent())) {
-                        cipherLetter.getAffirmations().pop();
-                        if (!cipherLetter.getAffirmations().hasAssumption()) {
-                            cipherLetter.getAffirmations().setCipherLetter(null);
-                            cipherLetter.getAffirmations().setSolvedLetter(null);
-                        }
-                    }
+                
+                affirmation = cipherLetter.getAffirmations();
+                alphabet = affirmation.getSolvedLetter();
+                
+                if (assumption.isRemoveFlag() && affirmation.hasAssumption() 
+                        && assumption.equals(affirmation.mostRecent())) {
+                    affirmation.pop();
+                    alphabet.setPlainLetter(null);
+
                 } else if (cipherLetter.value().equals(assumption.getCipherLetter())) {
-                    //cipherLetter.setPlainLetter(assumption.getPlainLetter());
-                    alphabet = new Alphabet(assumption.getCipherLetter());
+                    // cipherLetter.setPlainLetter(assumption.getPlainLetter());
+                    // alphabet = new Alphabet(assumption.getCipherLetter());
+                    alphabet = cipherLetter.getAffirmations().getSolvedLetter();
                     alphabet.setPlainLetter(assumption.getPlainLetter());
-                    alphabet.register();
+                    // alphabet.register();
 
                     System.out.println("updateAffirmations-> " + alphabet.getCipherLetter() + "->" + alphabet.getPlainLetter());
-
-                    alphabet.getAffirmations().push(assumption);
-                    cipherLetter.getAffirmations().push(assumption);
-                    cipherLetter.getAffirmations().setCipherLetter(cipherLetter);
-                    cipherLetter.getAffirmations().setSolvedLetter(alphabet);
+                    
+                    affirmation.push(assumption);
+                    // alphabet.getAffirmations().push(assumption);
+                    // cipherLetter.getAffirmations().push(assumption);
+                    // cipherLetter.getAffirmations().setCipherLetter(cipherLetter);
+                    // cipherLetter.getAffirmations().setSolvedLetter(alphabet);
                 }
             }
         }

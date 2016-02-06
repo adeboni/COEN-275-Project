@@ -3,9 +3,7 @@ package knowledge.sources;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
 import blackboard.BlackboardContext;
@@ -14,7 +12,6 @@ import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
 import domain.Dependent.Direction;
-import util.SentenceUtil;
 
 public class LegalStringKnowledgeSource extends StringKnowledgeSource {
 

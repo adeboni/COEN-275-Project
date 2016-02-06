@@ -47,10 +47,7 @@ public class Sentence extends BlackboardObject {
      * @return boolean true if solved
      */
     public boolean isSolved() {
-
-        List<Word> list = this.getWords();
-
-        for (Word word : list) {
+        for (Word word : words) {
             if (!word.isSolved()) {
                 return false;
             }

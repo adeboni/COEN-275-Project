@@ -7,7 +7,7 @@ public class CipherLetter extends BlackboardObject {
     /**
      * Affirmation (statements) made against this cipher
      */
-    protected Affirmation affirmations = new Affirmation();
+    protected Affirmation affirmations;
 
     public String value() {
         return cipherLetter;
@@ -15,6 +15,7 @@ public class CipherLetter extends BlackboardObject {
     
     public CipherLetter(String letter) {
         cipherLetter = letter;
+        affirmations = new Affirmation(this);
     }
 
     /**

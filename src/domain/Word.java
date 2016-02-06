@@ -76,32 +76,32 @@ public class Word extends BlackboardObject {
         return letters;
     }
 
-	/**
-	 * @return the previousWord
-	 */
-	public Word getPreviousWord() {
-		return previousWord;
-	}
+    /**
+     * @return the previousWord
+     */
+    public Word getPreviousWord() {
+        return previousWord;
+    }
 
-	/**
-	 * @param previousWord the previousWord to set
-	 */
-	public void setPreviousWord(Word previousWord) {
-		this.previousWord = previousWord;
-	}
+    /**
+     * @param previousWord the previousWord to set
+     */
+    public void setPreviousWord(Word previousWord) {
+       this.previousWord = previousWord;
+    }
 
-	/**
-	 * @return the nextWord
-	 */
-	public Word getNextWord() {
-		return nextWord;
-	}
+    /**
+     * @return the nextWord
+     */
+    public Word getNextWord() {
+        return nextWord;
+    }
 
-	/**
-	 * @param nextWord the nextWord to set
-	 */
-	public void setNextWord(Word nextWord) {
-		this.nextWord = nextWord;
-	}
+    /**
+     * @param nextWord the nextWord to set
+     */
+    public void setNextWord(Word nextWord) {
+        this.nextWord = nextWord;
+    }
 
 }

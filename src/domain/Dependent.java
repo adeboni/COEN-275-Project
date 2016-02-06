@@ -52,6 +52,9 @@ public abstract class Dependent {
     }
     
     public void notify(Direction direction, Assumption statement) {
+        ConcurrentLinkedQueue<Assumption> queue;
+        Iterator<Assumption> iter;
+        Assumption stmt;
         
         /**
          * Forward chaining Knowledge Sources
@@ -67,10 +70,10 @@ public abstract class Dependent {
          */
         if (direction == Direction.REVERSE) {
             for (KnowledgeSource knowledgeSource : references) {
-                ConcurrentLinkedQueue<Assumption> queue = knowledgeSource.getPastAssumptions();
-                Iterator<Assumption> iter = queue.iterator();
+                queue = knowledgeSource.getPastAssumptions();
+                iter = queue.iterator();
                 while (iter.hasNext()) {
-                    Assumption stmt = (Assumption) iter.next();
+                    stmt = (Assumption) iter.next();
                     if (stmt.equals(statement)) {
                         iter.remove();
                     }

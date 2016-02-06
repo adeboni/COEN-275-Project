@@ -3,7 +3,6 @@ package util;
 import java.util.List;
 
 import blackboard.Blackboard;
-import domain.BlackboardObject;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
@@ -18,13 +17,7 @@ public final class BlackboardUtil {
      */
     public static void outputProgress(Blackboard blackboard) {
 
-        Sentence sentence = null;
-        
-        for (BlackboardObject obj : blackboard) {
-            if (obj.getClass().equals(domain.Sentence.class)) {
-                sentence = (Sentence) obj;
-            }
-        }
+        Sentence sentence = blackboard.getSentence();
 
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("-- THE BLACKBOARD");
@@ -55,7 +48,6 @@ public final class BlackboardUtil {
      * @return a special string of underscores
      */
     private static String getAffirmationMarkings(Sentence sentence) {
-
         String markerLine = "";
         int wordcount = 0;
         int loopcount = 0;
@@ -68,7 +60,7 @@ public final class BlackboardUtil {
             List<CipherLetter> list = word.getLetters();
 
             for (CipherLetter letter : list) {
-                if (letter.getAffirmations().getSolvedLetter() != null) {
+                if (letter.getAffirmations().getSolvedLetter().getPlainLetter() != null) {
                     // affirmation and we have an assertion
                     markerLine = markerLine.concat(letter.getAffirmations().getSolvedLetter().getPlainLetter()); // was underscore
                 } else {
@@ -81,8 +73,7 @@ public final class BlackboardUtil {
             loopcount++;
 
         }
+        
         return markerLine;
     }
-
-    
 }

@@ -50,5 +50,4 @@ public final class BlackboardContext {
     public final Controller getController() {
         return controller;
     }
-
 }
