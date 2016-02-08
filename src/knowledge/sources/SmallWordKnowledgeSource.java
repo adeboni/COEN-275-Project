@@ -30,94 +30,54 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 		for (Word word : words) {
 			List<CipherLetter> letters = SentenceUtil.getLetters(word);
 
-			if (letters.size() == 1 && !history.contains(word.value())) {
-				Assumption assumption = new Assumption();
+			if (letters.size() > 3) continue;
+			
+			for (String dictWord : getWords(letters.size(), 5)) {
+				for (int i = 0; i < letters.size(); i++) {
+					if (history.contains(letters.get(i).value())) continue;
+					
+					Assumption assumption = new Assumption();
 
-				assumption.setCipherLetter(word.value());
-				assumption.setPlainLetter("I");
+					assumption.setCipherLetter(letters.get(i).value());
+					assumption.setPlainLetter(dictWord.charAt(i) + "");
+					
+					assumption.addReference(this);
+					assumption.notify(Direction.REVERSE, assumption);
 
-				queue.add(assumption);
-
+					queue.add(assumption);
+					
+					history.add(letters.get(i).value());
+				}
 				
-				Assumption assumption2 = new Assumption();
-
-				assumption2.setCipherLetter(word.value());
-				assumption2.setPlainLetter("A");
-
-				queue.add(assumption2);
-				
-				
-				assumption.notify(Direction.REVERSE, assumption2);
-				
-				history.add(word.value());
 			}
 		}
-
-
-        //TODO: remove this, this is just for demonstration
-		/*{
-        	if (!history.contains("D")) {
-                Assertion assertion1 = new Assertion();
-                assertion1.setCipherLetter("D");
-                assertion1.setPlainLetter("S");
-                queue.add(assertion1);
-                history.add("D");
-
-                Assertion assertion2 = new Assertion();
-                assertion2.setCipherLetter("S");
-                assertion2.setPlainLetter("E");
-                queue.add(assertion2);
-                history.add("S");
-
-                Assertion assertion3 = new Assertion();
-                assertion3.setCipherLetter("C");
-                assertion3.setPlainLetter("N");
-                queue.add(assertion3);
-                history.add("C");
-                
-                
-                
-                
-                
-                Assertion assertion4 = new Assertion();
-                assertion4.setCipherLetter("K");
-                assertion4.setPlainLetter("T");
-                queue.add(assertion4);
-                history.add("K");
-
-                Assertion assertion5 = new Assertion();
-                assertion5.setCipherLetter("A");
-                assertion5.setPlainLetter("H");
-                queue.add(assertion5);
-                history.add("A");
-        	}
-		}
-		*/
-		
+			
 		this.setPastAssumptions(queue);
 	}
         
-
-
     
-    public List<String> getWords(int numLetters, int numWords) throws FileNotFoundException {
+    public List<String> getWords(int numLetters, int numWords) {
 		List<String> ret = new ArrayList<String>();
 		
-		Scanner s = new Scanner(new File("resources/words.txt"));
-		ArrayList<String> dict = new ArrayList<String>();
-		while (s.hasNext()) dict.add(s.next());
-		s.close();
-		
-		for (int i = 0; i < dict.size(); i++) {
-			if (dict.get(i).length() == numLetters)
-				ret.add(dict.get(i));
-			if (ret.size() == numWords) break;
+		try {
+			Scanner s = new Scanner(new File("resources/words.txt"));
+			ArrayList<String> dict = new ArrayList<String>();
+			while (s.hasNext()) dict.add(s.next().toUpperCase());
+			s.close();
+			
+			for (int i = 0; i < dict.size(); i++) {
+				if (dict.get(i).length() == numLetters)
+					ret.add(dict.get(i));
+				if (ret.size() == numWords) break;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 			
 		return ret;
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		SmallWordKnowledgeSource smallWordKnowledgeSource = new SmallWordKnowledgeSource();
 		for (String s : smallWordKnowledgeSource.getWords(1, 10)) {
 			System.out.println(s);

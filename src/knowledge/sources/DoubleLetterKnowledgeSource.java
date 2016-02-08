@@ -16,6 +16,7 @@ import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
+import domain.Dependent.Direction;
 import util.SentenceUtil;
 
 public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
@@ -31,6 +32,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
+        
         List<CipherLetter> letters;
         String wordStr;
 
@@ -64,7 +66,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
                     Assumption assumption = new Assumption();
                     assumption.setCipherLetter(Character.toString(wordStr.charAt(index)));
                     assumption.setPlainLetter(firstLetterInMatch);
-
+                    
                     queue.add(assumption);
                     history.add(word.value());
                 }

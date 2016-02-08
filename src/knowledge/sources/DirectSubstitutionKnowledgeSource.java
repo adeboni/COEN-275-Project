@@ -14,7 +14,6 @@ import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
 import domain.Dependent.Direction;
-import util.SentenceUtil;
 
 public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
@@ -22,8 +21,6 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 	
 	public DirectSubstitutionKnowledgeSource() {
 		substitutions.put("W", "V");
-		substitutions.put("V", "B");
-		substitutions.put("G", "X");
 		
 		/*
 		Scanner in = new Scanner(System.in);
@@ -66,20 +63,13 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
                         history.add(cipher);
                         String plainText = substitutions.get(cipher);
 
-                        Assumption assumption = new Assumption();
-                        assumption.setCipherLetter(cipher);
-                        assumption.setPlainLetter(plainText);
-                        queue.add(assumption);
-                        assumption.notify(Direction.FORWARD, assumption);
-                        
-                        /*
                         Assertion assertion = new Assertion();
                         assertion.setCipherLetter(cipher);
                         assertion.setPlainLetter(plainText);
 
                         queue.add(assertion);
                         assertion.notify(Direction.FORWARD, assertion);
-                        */
+                        
                         System.out.println("The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
                     }
                 }

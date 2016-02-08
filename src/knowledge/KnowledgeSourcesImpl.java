@@ -51,11 +51,16 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> imple
     	//TODO: put this in order of priority
     	
     	addKS(new DirectSubstitutionKnowledgeSource());
-        addKS(new SentenceStructureKnowledgeSource());
-        addKS(new PatternMatchingKnowledgeSource());
+        
+    	addKS(new SmallWordKnowledgeSource());
+    	//addKS(new PatternMatchingKnowledgeSource());
+    	
         addKS(new DoubleLetterKnowledgeSource());
-        addKS(new SmallWordKnowledgeSource());
-        addKS(new WordStructureKnowledgeSource());  
+        
+        
+        
+        addKS(new WordStructureKnowledgeSource());
+        addKS(new SentenceStructureKnowledgeSource());
         addKS(new LegalStringKnowledgeSource());
         addKS(new CommonSuffixKnowledgeSource());
         addKS(new CommonPrefixKnowledgeSource());
