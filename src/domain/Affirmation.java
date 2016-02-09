@@ -20,14 +20,7 @@ public class Affirmation {
      */
     private Stack<Assumption> _assumptions;
 
-    /**
-     * Default constructor
-     */
-    /*
-    public Affirmation() {
-       this(null);
-    }
-    */
+
     public Affirmation(CipherLetter cipherLetter) {
        this._cipherLetter = cipherLetter;
        this._solvedLetter = new Alphabet(cipherLetter.value(), this);

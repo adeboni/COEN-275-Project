@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import blackboard.Blackboard;
@@ -54,10 +55,12 @@ public final class BlackboardUtil {
 
         List<Word> words = sentence.getWords();
         wordcount = words.size();
+        currentSentenceState.clear();
 
         for (Word word : words) {
 
             List<CipherLetter> list = word.getLetters();
+            currentSentenceState.add(list);
 
             for (CipherLetter letter : list) {
                 if (letter.getAffirmations().getSolvedLetter().getPlainLetter() != null) {
@@ -75,5 +78,11 @@ public final class BlackboardUtil {
         }
         
         return markerLine;
+    }
+    
+    private static List<List<CipherLetter>> currentSentenceState = new ArrayList<List<CipherLetter>>();
+    
+    public static List<List<CipherLetter>> getCurrentSentenceState() {
+    	return currentSentenceState;
     }
 }

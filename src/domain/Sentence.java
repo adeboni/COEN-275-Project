@@ -47,6 +47,8 @@ public class Sentence extends BlackboardObject {
      * @return boolean true if solved
      */
     public boolean isSolved() {
+    	if (_solved) return true;
+    	
         for (Word word : words) {
             if (!word.isSolved()) {
                 return false;
@@ -54,6 +56,11 @@ public class Sentence extends BlackboardObject {
         }
 
         return true;
+    }
+    
+    private boolean _solved = false;
+    public void setSolved() {
+    	_solved = true;
     }
 
     /**

@@ -15,35 +15,63 @@ import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
 import domain.Dependent.Direction;
+import util.BlackboardUtil;
 import util.SentenceUtil;
 
 public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
+	
+	private static ArrayList<String> dict = new ArrayList<String>();
 	
     @Override
     public String toString() {
         return "PatternMatchingKnowledgeSource";
     }
+    
+    public PatternMatchingKnowledgeSource() {
+    	dict.clear();
+    	try {
+			Scanner s = new Scanner(new File("resources/words.txt"));
+			while (s.hasNext()) dict.add(s.next().toUpperCase());
+			s.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+    }
 
-
-    public void evaluate() {
+    public void evaluate() {  	
     	Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
 
-		for (Word word : words) {
-			List<CipherLetter> letters = SentenceUtil.getLetters(word);
-			//somehow get solved letters and build the regex
+		for (int w = words.size() - 1; w > 0; w--) {
+			List<CipherLetter> letters = SentenceUtil.getLetters(words.get(w));
+
+			if (letters.size() < 4) continue;
 			
-			/*
-			for (String dictWord : getWords(".*", 5)) {
+			String regex = "";
+			int unknownCount = 0;
+			for (CipherLetter cl : BlackboardUtil.getCurrentSentenceState().get(w)) {
+				if (cl.getAffirmations().getSolvedLetter().getPlainLetter() == null) {
+					regex += ".";
+					unknownCount++;
+				}
+				else {
+					regex += cl.getAffirmations().getSolvedLetter().getPlainLetter();
+				}
+			}
+
+			if (unknownCount == 0 || unknownCount > 2) continue;
+						
+			for (String dictWord : getWords(regex, 2)) {
 				for (int i = 0; i < letters.size(); i++) {
 					if (history.contains(letters.get(i).value())) continue;
+					if (regex.charAt(i) != '.') continue;
 					
 					Assumption assumption = new Assumption();
 
 					assumption.setCipherLetter(letters.get(i).value());
-					assumption.setPlainLetter(dictWord.charAt(i) + "");
+					assumption.setPlainLetter(Character.toString(dictWord.charAt(i)));
 					
 					assumption.addReference(this);
 					assumption.notify(Direction.REVERSE, assumption);
@@ -53,35 +81,26 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 					history.add(letters.get(i).value());
 				}
 				
-			}*/
+			}
 		}
 			
 		this.setPastAssumptions(queue);
 	}
     
-    public static List<String> getWords(String regex, int numWords)  {
+    private static List<String> getWords(String regex, int numWords)  {
 		List<String> ret = new ArrayList<String>();
-		
-		try {
-			Scanner s = new Scanner(new File("resources/words.txt"));
-			ArrayList<String> dict = new ArrayList<String>();
-			while (s.hasNext()) dict.add(s.next().toUpperCase());
-			s.close();
-			
-			for (int i = 0; i < dict.size(); i++) {
-				if (Pattern.matches(regex, dict.get(i)))
-					ret.add(dict.get(i));
-				if (ret.size() == numWords) break;
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+
+		for (int i = 0; i < dict.size(); i++) {
+			if (Pattern.matches(regex, dict.get(i)))
+				ret.add(dict.get(i));
+			if (ret.size() == numWords) break;
 		}
-			
+		
 		return ret;
 	}
 	
 	public static void main(String[] args) {
-		List<String> words = getWords("...LL", 5);
+		List<String> words = getWords(".HELL", 5);
 		for (String s : words) {
 			System.out.println(s);
 		}

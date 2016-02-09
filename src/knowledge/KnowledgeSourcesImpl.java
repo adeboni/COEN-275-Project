@@ -2,19 +2,7 @@ package knowledge;
 
 import java.util.ArrayList;
 
-import knowledge.sources.CommonPrefixKnowledgeSource;
-import knowledge.sources.CommonSuffixKnowledgeSource;
-import knowledge.sources.ConsonantKnowledgeSource;
-import knowledge.sources.DirectSubstitutionKnowledgeSource;
-import knowledge.sources.DoubleLetterKnowledgeSource;
-import knowledge.sources.LegalStringKnowledgeSource;
-import knowledge.sources.LetterFrequencyKnowledgeSource;
-import knowledge.sources.PatternMatchingKnowledgeSource;
-import knowledge.sources.SentenceStructureKnowledgeSource;
-import knowledge.sources.SmallWordKnowledgeSource;
-import knowledge.sources.SolvedKnowledgeSource;
-import knowledge.sources.VowelKnowledgeSource;
-import knowledge.sources.WordStructureKnowledgeSource;
+import knowledge.sources.*;
 
 public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements KnowledgeSources {
 
@@ -26,8 +14,6 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> imple
 
     /**
      * Public method to initialize all knowledge sources
-     * 
-     * @throws CollectionLoadingException
      */
     public void init() {
         loadKnowledgeSources();
@@ -35,8 +21,6 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> imple
 
     /**
      * Public method to clear and initialize all knowledge sources
-     * 
-     * @throws CollectionLoadingException
      */
     public void reset()  {
         this.clear();
@@ -53,7 +37,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> imple
     	addKS(new DirectSubstitutionKnowledgeSource());
     	addKS(new DoubleLetterKnowledgeSource());
     	addKS(new SmallWordKnowledgeSource());
-    	//addKS(new PatternMatchingKnowledgeSource());
+    	addKS(new PatternMatchingKnowledgeSource());
     	
         addKS(new WordStructureKnowledgeSource());
         addKS(new SentenceStructureKnowledgeSource());
@@ -63,6 +47,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> imple
         addKS(new LetterFrequencyKnowledgeSource());
         addKS(new ConsonantKnowledgeSource());
         addKS(new VowelKnowledgeSource());
+        
         addKS(new SolvedKnowledgeSource());
     }
 
@@ -73,7 +58,6 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> imple
      * @param ks
      *            the {@link knowledge.KnowledgeSource}
      *            reference
-     * @throws CollectionLoadingException
      */
     private void addKS(KnowledgeSource ks) {
     	this.add(ks);

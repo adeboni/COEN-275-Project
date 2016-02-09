@@ -1,5 +1,10 @@
 package blackboard;
 
+import java.util.List;
+
+import domain.CipherLetter;
+import util.BlackboardUtil;
+
 public final class Cryptographer {
 
     /**
@@ -45,12 +50,23 @@ public final class Cryptographer {
      * @return solution as String
      */
     private String runController() {
-        int maxTries = 8;
-        for (int i = 0; i < 20; ++i) {
+        int maxTries = 20;
+        for (int i = 0; i < maxTries; ++i) {
             controller.processNextHint();
             if (blackboard.isSolved()) {
                 controller.done();
-                return blackboard.retrieveSolution().value();
+                
+                List<List<CipherLetter>> sentence = BlackboardUtil.getCurrentSentenceState();
+                String ret = "";
+                
+                for (List<CipherLetter> word : sentence) {
+                	for (CipherLetter letter : word) {
+                		ret += letter.getAffirmations().getSolvedLetter().getPlainLetter();
+                	}
+                	ret += " ";
+                }
+                
+                return ret;
             }
         }
         

@@ -15,9 +15,23 @@ import util.SentenceUtil;
 
 public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
+	private static ArrayList<String> dict = new ArrayList<String>();
+	
     @Override
     public String toString() {
         return "SmallWordKnowledgeSource";
+    }
+    
+    public SmallWordKnowledgeSource() {
+    	dict.clear();
+    	
+    	try {
+			Scanner s = new Scanner(new File("resources/words.txt"));
+			while (s.hasNext()) dict.add(s.next().toUpperCase());
+			s.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
     }
 
     @Override
@@ -56,17 +70,8 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 	}
         
     
-    public List<String> getWords(int numLetters, int numWords) {
+    private static List<String> getWords(int numLetters, int numWords) {
 		List<String> ret = new ArrayList<String>();
-		ArrayList<String> dict = new ArrayList<String>();
-		
-		try {
-			Scanner s = new Scanner(new File("resources/words.txt"));
-			while (s.hasNext()) dict.add(s.next().toUpperCase());
-			s.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 		
 		for (int i = 0; i < dict.size(); i++) {
 			if (dict.get(i).length() == numLetters)
@@ -78,8 +83,7 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 	}
 	
 	public static void main(String[] args) {
-		SmallWordKnowledgeSource smallWordKnowledgeSource = new SmallWordKnowledgeSource();
-		for (String s : smallWordKnowledgeSource.getWords(1, 10)) {
+		for (String s : getWords(1, 10)) {
 			System.out.println(s);
 		}
 	}

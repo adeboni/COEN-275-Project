@@ -9,7 +9,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
 import blackboard.BlackboardContext;
-import domain.Assertion;
 import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
@@ -19,9 +18,22 @@ import util.SentenceUtil;
 
 public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
 
+	private static ArrayList<String> dict = new ArrayList<String>();
+	
     @Override
     public String toString() {
         return "DoubleLetterKnowledgeSource";
+    }
+    
+    public DoubleLetterKnowledgeSource() {
+    	dict.clear();
+    	try {
+			Scanner s = new Scanner(new File("resources/doubleLetters.txt"));
+			while (s.hasNext()) dict.add(s.next().toUpperCase());
+			s.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
     }
 
     @Override
@@ -67,16 +79,6 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
         // if Two back to back same letters in the middle of the a word are likely 2 vowels > "EE" or "OO" especially in a 4 char word
 
     	List<String> ret = new ArrayList<String>();
-        List<String> dict = new ArrayList<String>();
-
-		try {
-			Scanner s = new Scanner(new File("resources/doubleLetters.txt"));
-			while (s.hasNext()) dict.add(s.next().toUpperCase());
-	        s.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-        
 
 		for (int i = 0; i < dict.size(); i++) {
 			ret.add(dict.get(i));

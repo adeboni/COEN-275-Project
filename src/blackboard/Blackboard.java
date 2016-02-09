@@ -25,17 +25,6 @@ public class Blackboard extends ArrayList<BlackboardObject> {
 
 
     /**
-     * Return decoded sentence
-     * 
-     * @return {@link domain.Sentence} object for the
-     *         solution
-     * 
-     */
-    public final Sentence retrieveSolution() {
-        return getSentence();
-    }
-
-    /**
      * Reset the blackboard
      */
     public final void reset() {
@@ -136,8 +125,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
             	Affirmation affirmation = cipherLetter.getAffirmations();
             	Alphabet alphabet = affirmation.getSolvedLetter();
                 
-                if (assumption.isRemoveFlag() && affirmation.hasAssumption() 
-                        && assumption.equals(affirmation.mostRecent())) {
+                if (assumption.isRemoveFlag() && affirmation.hasAssumption() && assumption.equals(affirmation.mostRecent())) {
                     affirmation.pop();
                     alphabet.setPlainLetter(null);
 
