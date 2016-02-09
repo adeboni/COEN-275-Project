@@ -68,7 +68,6 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
                         assertion.setPlainLetter(plainText);
 
                         queue.add(assertion);
-                        assertion.notify(Direction.FORWARD, assertion);
                         
                         System.out.println("The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
                     }

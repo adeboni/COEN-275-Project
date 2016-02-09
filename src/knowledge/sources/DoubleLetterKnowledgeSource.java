@@ -1,10 +1,8 @@
 package knowledge.sources;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -32,70 +30,60 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
-        
-        List<CipherLetter> letters;
-        String wordStr;
 
-        boolean found;
-        int index;
-        Assertion a;
-
-        // demo only
         for (Word word : words) {
-            letters = SentenceUtil.getLetters(word);
-            wordStr = word.value();
-            index = 0;
-            found = false;
-            for (int i = 0; i < wordStr.length() - 2; ++i) {
-                if (wordStr.charAt(i) == wordStr.charAt(i + 1)) {
+        	List<CipherLetter> letters = SentenceUtil.getLetters(word);
+        	int index = 0;
+            boolean found = false;
+            for (int i = 0; i < letters.size() - 1; i++) {
+                if (letters.get(i).value().equals(letters.get(i + 1).value())) {
                     found = true;
                     index = i;
                     break;
                 }
             }
 
-            if (found) {
-                if (index != 0) { // middle
-                    String firstLetterInMatch = null;
-                    try {
-                        firstLetterInMatch = doubleLetter().substring(0,1);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+            if (found && !history.contains(letters.get(index).value())) {
+            	for (String dl : doubleLetter(2)) {            		
+            		String firstLetterInMatch = dl.substring(0,1);
 
                     Assumption assumption = new Assumption();
-                    assumption.setCipherLetter(Character.toString(wordStr.charAt(index)));
+                    assumption.setCipherLetter(letters.get(index).value());
                     assumption.setPlainLetter(firstLetterInMatch);
                     
+                    assumption.addReference(this);
+                    assumption.notify(Direction.REVERSE, assumption);
+                    
                     queue.add(assumption);
-                    history.add(word.value());
-                }
+                    history.add(letters.get(index).value());
+            	}
             }
         }
 
-        setPastAssumptions(queue);
+        this.setPastAssumptions(queue);
     }
 
-    public String doubleLetter() throws FileNotFoundException {
+    public List<String> doubleLetter(int numDoubleLetters) {
         // if Two back to back same letters in the middle of the a word are likely 2 vowels > "EE" or "OO" especially in a 4 char word
 
-        ArrayList<String> dict = new ArrayList<>();
-        String doubleLetterString = null;
+    	List<String> ret = new ArrayList<String>();
+        List<String> dict = new ArrayList<String>();
 
-        Scanner s = new Scanner(new File("resources/doubleLetters.txt"));
-        while (s.hasNext()) dict.add(s.next());
-        s.close();
+		try {
+			Scanner s = new Scanner(new File("resources/doubleLetters.txt"));
+			while (s.hasNext()) dict.add(s.next().toUpperCase());
+	        s.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        
 
-        //read dict ArrayList, if current line does not contain used char, return current line and break.
+		for (int i = 0; i < dict.size(); i++) {
+			ret.add(dict.get(i));
+			if (ret.size() == numDoubleLetters) break;
+		}
 
-        for (String st : dict) {
-            if (!history.contains(st.substring(0))) {
-                doubleLetterString = st;
-                break;
-            }
-        }
-
-        return doubleLetterString.toUpperCase();
+        return ret;
     }
 }
 

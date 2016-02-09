@@ -39,7 +39,7 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 					Assumption assumption = new Assumption();
 
 					assumption.setCipherLetter(letters.get(i).value());
-					assumption.setPlainLetter(dictWord.charAt(i) + "");
+					assumption.setPlainLetter(Character.toString(dictWord.charAt(i)));
 					
 					assumption.addReference(this);
 					assumption.notify(Direction.REVERSE, assumption);
@@ -58,20 +58,20 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
     
     public List<String> getWords(int numLetters, int numWords) {
 		List<String> ret = new ArrayList<String>();
+		ArrayList<String> dict = new ArrayList<String>();
 		
 		try {
 			Scanner s = new Scanner(new File("resources/words.txt"));
-			ArrayList<String> dict = new ArrayList<String>();
 			while (s.hasNext()) dict.add(s.next().toUpperCase());
 			s.close();
-			
-			for (int i = 0; i < dict.size(); i++) {
-				if (dict.get(i).length() == numLetters)
-					ret.add(dict.get(i));
-				if (ret.size() == numWords) break;
-			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < dict.size(); i++) {
+			if (dict.get(i).length() == numLetters)
+				ret.add(dict.get(i));
+			if (ret.size() == numWords) break;
 		}
 			
 		return ret;
