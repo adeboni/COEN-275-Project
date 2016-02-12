@@ -15,7 +15,7 @@ public class Assumption extends BlackboardObject {
     
     protected String plainLetter;
     
-    protected boolean removeFlag = false;
+    protected boolean validFlag = true;
     
     /**
      * Assumption is always retractable. Please note that an Assertion (extends)
@@ -100,15 +100,15 @@ public class Assumption extends BlackboardObject {
    /**
     * @return the removeFlag
     */
-   public boolean isRemoveFlag() {
-      return removeFlag;
+   public boolean isValid() {
+      return validFlag;
    }
 
    /**
     * @param removeFlag the removeFlag to set
     */
-   public void setRemoveFlag(boolean removeFlag) {
-      this.removeFlag = removeFlag;
+   public void setValidFlag(boolean validFlag) {
+      this.validFlag = validFlag;
    }
 
 }

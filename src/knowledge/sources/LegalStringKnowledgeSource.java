@@ -2,7 +2,9 @@ package knowledge.sources;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 import blackboard.Blackboard;
@@ -15,11 +17,11 @@ import domain.Dependent.Direction;
 
 public class LegalStringKnowledgeSource extends StringKnowledgeSource {
 
-    private HashSet<String> illegalDict;
+    private HashSet<String> dict;
     
     public LegalStringKnowledgeSource() {
-       illegalDict = new HashSet<String>();
-       reset();
+        dict = new HashSet<String>();
+        reset();
     }
 
     @Override
@@ -33,48 +35,54 @@ public class LegalStringKnowledgeSource extends StringKnowledgeSource {
         Sentence sentence = blackboard.getSentence();
         Assumption assumption;
         String temp;
+        List<CipherLetter> letters = new ArrayList<CipherLetter>();
         
         for (Word word : sentence.getWords()) {
-           temp = "";
+            temp = "";
+            letters.clear();
            
-           for (CipherLetter letter : word.getLetters()) {
-           
-              if (letter.getAffirmations().cipherLetterHasAssumption()) {
-                  temp += letter.getAffirmations().plainText();
-                  
-                  if (illegalDict.contains(temp)) { // should be part of temp is in illegalDict instead
-                      assumption = letter.getAffirmations().mostRecent();
-                      assumption.setRemoveFlag(true);
-                      pastAssumptions.add(assumption);
-                      assumption.notify(Direction.REVERSE, assumption);
-                      history.add(temp);
-                      return;
-                  }
-              } else {
-                  temp = "";
-              }
-           }
+            for (CipherLetter letter : word.getLetters()) {
+                if (letter.getAffirmations().cipherLetterHasAssumption()) {
+                    temp += letter.getAffirmations().plainText();
+                    letters.add(letter);
+                    
+                    for (int i = 0; i < temp.length() - 1; ++i) {
+                        if (dict.contains(temp.substring(i, i + 2))) {
+                            // TODO: still have to pick the latest assumption among these 2 letters
+                            assumption = letter.getAffirmations().mostRecent();
+                            assumption.setValidFlag(false);
+                            pastAssumptions.add(assumption);
+                            assumption.notify(Direction.REVERSE, assumption);
+                            history.add(temp);
+                            return;
+                        }
+                    }
+                } else {
+                    temp = "";
+                    letters.clear();
+                }
+            }
         }
     }
 
     @Override
     public void reset() {
-       super.reset();
-       loadFile();
+        super.reset();
+        loadFile();
     }
 
     private void loadFile() {
-       Scanner s;
+        Scanner s;
        
-       try {
-          illegalDict.clear();
-          s = new Scanner(new File("resources/illegalStrings.txt"));
-          while (s.hasNext()) {
-             illegalDict.add(s.next().toUpperCase());
-          }
-          s.close();
-       } catch (FileNotFoundException e) {
-          System.out.println(e);
-       }
+        try {
+            dict.clear();
+            s = new Scanner(new File("resources/illegalStrings.txt"));
+            while (s.hasNext()) {
+                dict.add(s.next().toUpperCase());
+            }
+            s.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
     }
 }

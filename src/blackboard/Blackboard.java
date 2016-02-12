@@ -121,28 +121,21 @@ public class Blackboard extends ArrayList<BlackboardObject> {
 
         for (Word word : sentence.getWords()) {
             for (CipherLetter cipherLetter : word.getLetters()) {
+                Affirmation affirmation = cipherLetter.getAffirmations();
+                Alphabet alphabet = affirmation.getSolvedLetter();
                 
-            	Affirmation affirmation = cipherLetter.getAffirmations();
-            	Alphabet alphabet = affirmation.getSolvedLetter();
-                
-                if (assumption.isRemoveFlag() && affirmation.hasAssumption() && assumption.equals(affirmation.mostRecent())) {
+                if (!assumption.isValid() && affirmation.hasAssumption() && assumption.equals(affirmation.mostRecent())) {
+                    // TODO: do not pop this and need to update the PlainLetter properly
                     affirmation.pop();
                     alphabet.setPlainLetter(null);
 
                 } else if (cipherLetter.value().equals(assumption.getCipherLetter())) {
-                    // cipherLetter.setPlainLetter(assumption.getPlainLetter());
-                    // alphabet = new Alphabet(assumption.getCipherLetter());
                     alphabet = cipherLetter.getAffirmations().getSolvedLetter();
                     alphabet.setPlainLetter(assumption.getPlainLetter());
-                    // alphabet.register();
 
                     System.out.println("updateAffirmations-> " + alphabet.getCipherLetter() + "->" + alphabet.getPlainLetter());
                     
                     affirmation.push(assumption);
-                    // alphabet.getAffirmations().push(assumption);
-                    // cipherLetter.getAffirmations().push(assumption);
-                    // cipherLetter.getAffirmations().setCipherLetter(cipherLetter);
-                    // cipherLetter.getAffirmations().setSolvedLetter(alphabet);
                 }
             }
         }
@@ -190,19 +183,16 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * @return a boolean if exists
      */
     public boolean cipherLetterExists(String letter) {
-
-        boolean result = false;
-
         for (BlackboardObject obj : this) {
             if (obj.getClass().equals(domain.CipherLetter.class)) {
                 CipherLetter cipherLetter = (CipherLetter) obj;
                 if (cipherLetter.value().equals(letter)) {
-                    result = true;
+                    return true;
                 }
             }
         }
         
-        return result;
+        return false;
     }
 
 }
