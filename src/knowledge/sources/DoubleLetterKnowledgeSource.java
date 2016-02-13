@@ -56,7 +56,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
             }
 
             if (found && !history.contains(letters.get(index).value())) {
-            	for (String dl : doubleLetter(2)) {            		
+            	for (String dl : doubleLetter(1)) {
             		String firstLetterInMatch = dl.substring(0,1);
 
                     Assumption assumption = new Assumption();
