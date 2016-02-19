@@ -53,6 +53,19 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
 			if (!dict.contains(currWord)) return;
 		}
         
+        //ask user if it's good
+        System.out.println("Does the following sentence make sense? (y/n)");
+        for (int w = 0; w < words.size(); w++) {
+        	for (CipherLetter l : BlackboardUtil.getCurrentSentenceState().get(w)) 
+        		System.out.print(l.getAffirmations().getSolvedLetter().getPlainLetter());
+        	System.out.print(" ");
+        }
+        System.out.print("\n");
+        Scanner in = new Scanner(System.in);
+        String answer = in.next();
+        in.close();
+        if (!answer.equals("y")) return;
+        
         sentence.setSolved();
         
         queue.add(new Assumption());
