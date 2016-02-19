@@ -42,6 +42,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
+        List<String> doubleLetters = doubleLetter();
 
         for (Word word : words) {
         	List<CipherLetter> letters = SentenceUtil.getLetters(word);
@@ -56,7 +57,8 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
             }
 
             if (found && !history.contains(letters.get(index).value())) {
-            	for (String dl : doubleLetter(1)) {
+                int i = 0;
+            	for (String dl : doubleLetters) {
             		String firstLetterInMatch = dl.substring(0,1);
 
                     Assumption assumption = new Assumption();
@@ -68,6 +70,9 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
                     
                     queue.add(assumption);
                     history.add(letters.get(index).value());
+                    doubleLetters.remove(0);
+                    break;
+
             	}
             }
         }
@@ -75,14 +80,13 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
         this.setPastAssumptions(queue);
     }
 
-    public List<String> doubleLetter(int numDoubleLetters) {
+    public List<String> doubleLetter() {
         // if Two back to back same letters in the middle of the a word are likely 2 vowels > "EE" or "OO" especially in a 4 char word
 
     	List<String> ret = new ArrayList<String>();
 
 		for (int i = 0; i < dict.size(); i++) {
 			ret.add(dict.get(i));
-			if (ret.size() == numDoubleLetters) break;
 		}
 
         return ret;
