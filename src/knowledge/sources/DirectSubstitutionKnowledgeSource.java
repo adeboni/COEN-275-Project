@@ -20,9 +20,9 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 	private final Map<String, String> substitutions = new HashMap<String, String>();
 	
 	public DirectSubstitutionKnowledgeSource() {
-		//substitutions.put("W", "V");
+		substitutions.put("W", "V");
 		
-		
+		/*
 		Scanner in = new Scanner(System.in);
 		while (true) {
 
@@ -38,7 +38,7 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 			}
 		
 		}
-		
+		*/
 	}
 	
 		
