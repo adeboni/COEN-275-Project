@@ -66,6 +66,8 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         in.close();
         if (!answer.equals("y")) return;
         
+        //TODO: what we should probably do is ask which word is wrong and then backtrack off of that word only
+        
         sentence.setSolved();
         
         queue.add(new Assumption());
