@@ -65,7 +65,7 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 						
 			for (String dictWord : getWords(regex, 2)) {
 				for (int i = 0; i < letters.size(); i++) {
-					if (history.contains(letters.get(i).value())) continue;
+					if (history.containsKey(letters.get(i).value())) continue;
 					if (regex.charAt(i) != '.') continue;
 					
 					Assumption assumption = new Assumption();
@@ -78,7 +78,7 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 
 					queue.add(assumption);
 					
-					history.add(letters.get(i).value());
+					history.put(letters.get(i).value(), new ArrayList<String>());
 				}
 				
 			}

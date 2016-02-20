@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
 import blackboard.BlackboardContext;
+import domain.Affirmation;
 import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
@@ -79,16 +80,15 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         	
         	for (int index : wrongIndices) {
         		//TODO: go through these cipherletters and mark them as not solved
-        		
+        		ls.get(index).setAffirmation(new Affirmation(ls.get(index)));
         	}
         	
         } else {
 	        sentence.setSolved();
-	        
-	        queue.add(new Assumption());
-	        this.setPastAssumptions(queue);
         }
         
+        queue.add(new Assumption());
+        this.setPastAssumptions(queue);
         in.close();
     }
     

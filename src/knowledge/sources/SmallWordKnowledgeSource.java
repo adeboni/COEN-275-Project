@@ -3,14 +3,18 @@ package knowledge.sources;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
 import blackboard.BlackboardContext;
-import domain.*;
+import domain.Assumption;
+import domain.CipherLetter;
 import domain.Dependent.Direction;
+import domain.Sentence;
+import domain.Word;
 import util.SentenceUtil;
 
 public class SmallWordKnowledgeSource extends WordKnowledgeSource {
@@ -40,6 +44,7 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
+        HashSet<String> addedLetters = new HashSet<String>();
 
 		for (Word word : words) {
 			List<CipherLetter> letters = SentenceUtil.getLetters(word);
@@ -48,7 +53,13 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 			
 			for (String dictWord : getWords(letters.size(), 5)) {
 				for (int i = 0; i < letters.size(); i++) {
-					if (history.contains(letters.get(i).value())) continue;
+					if (history.containsKey(letters.get(i).value())) continue;
+					//if (addedLetters.contains(letters.get(i).value())) continue;
+					if (history.containsKey(letters.get(i).value())) {
+						//for (String l : history.get(letters.get(i).value())) 
+							//if (l.equals(Character.toString(dictWord.charAt(i))))
+								//break;
+					}
 					
 					Assumption assumption = new Assumption();
 
@@ -56,11 +67,14 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 					assumption.setPlainLetter(Character.toString(dictWord.charAt(i)));
 					
 					letters.get(i).addReference(this);
-					letters.get(i).notify(Direction.REVERSE, assumption);
+					letters.get(i).notify(Direction.FORWARD, assumption);
 
 					queue.add(assumption);
 					
-					history.add(letters.get(i).value());
+					addedLetters.add(letters.get(i).value());
+					if (!history.containsKey(letters.get(i).value()))
+						history.put(letters.get(i).value(), new ArrayList<String>());
+					history.get(letters.get(i).value()).add(Character.toString(dictWord.charAt(i)));
 				}
 				
 			}

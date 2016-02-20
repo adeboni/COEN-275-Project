@@ -56,7 +56,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
                 }
             }
 
-            if (found && !history.contains(letters.get(index).value())) {
+            if (found && !history.containsKey(letters.get(index).value())) {
             	for (String dl : doubleLetters) {
             		String firstLetterInMatch = dl.substring(0,1);
 
@@ -68,7 +68,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
                     letters.get(index).notify(Direction.REVERSE, assumption);
                     
                     queue.add(assumption);
-                    history.add(letters.get(index).value());
+                    history.put(letters.get(index).value(), new ArrayList<String>());
                     doubleLetters.remove(0);
                     break;
 

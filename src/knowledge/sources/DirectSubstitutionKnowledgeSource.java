@@ -1,5 +1,6 @@
 package knowledge.sources;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,8 +60,8 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
             for (CipherLetter letter : letters) {
                 for (String cipher : substitutions.keySet()) {
-                    if (letter.value().equals(cipher) && !history.contains(cipher)) {
-                        history.add(cipher);
+                    if (letter.value().equals(cipher) && !history.containsKey(cipher)) {
+                        history.put(cipher, new ArrayList<String>());
                         String plainText = substitutions.get(cipher);
 
                         Assertion assertion = new Assertion();
