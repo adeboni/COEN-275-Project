@@ -56,6 +56,7 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         //ask user if it's good
         System.out.println("Does the following sentence make sense? (y/n)");
         for (int w = 0; w < words.size(); w++) {
+        	System.out.print("(" +  w + ")");
         	for (CipherLetter l : BlackboardUtil.getCurrentSentenceState().get(w)) 
         		System.out.print(l.getAffirmations().getSolvedLetter().getPlainLetter());
         	System.out.print(" ");
@@ -63,15 +64,32 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         System.out.print("\n");
         Scanner in = new Scanner(System.in);
         String answer = in.next();
+        if (!answer.equals("y")) {
+        	System.out.println("Which word is wrong?");
+        	int n = in.nextInt();
+        	System.out.println("Which letter(s) are wrong? (Comma separated)");
+        	List<CipherLetter> ls = BlackboardUtil.getCurrentSentenceState().get(n);
+        	for (int i = 0; i < ls.size(); i++) 
+        		System.out.print("(" + i + ")" + ls.get(i).getAffirmations().getSolvedLetter().getPlainLetter() + " ");
+        	System.out.print("\n");
+        	String[] wrongLetters = in.next().split(",");
+        	int[] wrongIndices = new int[wrongLetters.length];
+        	for (int i = 0; i < wrongLetters.length; i++) 
+        		wrongIndices[i] = Integer.parseInt(wrongLetters[i]);
+        	
+        	for (int index : wrongIndices) {
+        		//TODO: go through these cipherletters and mark them as not solved
+        		
+        	}
+        	
+        } else {
+	        sentence.setSolved();
+	        
+	        queue.add(new Assumption());
+	        this.setPastAssumptions(queue);
+        }
+        
         in.close();
-        if (!answer.equals("y")) return;
-        
-        //TODO: what we should probably do is ask which word is wrong and then backtrack off of that word only
-        
-        sentence.setSolved();
-        
-        queue.add(new Assumption());
-        this.setPastAssumptions(queue);
     }
     
  
