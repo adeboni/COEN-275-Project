@@ -66,8 +66,8 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 					assumption.setCipherLetter(letters.get(i).value());
 					assumption.setPlainLetter(Character.toString(dictWord.charAt(i)));
 					
-					letters.get(i).addReference(this);
-					letters.get(i).notify(Direction.FORWARD, assumption);
+					//letters.get(i).addReference(this);
+					//letters.get(i).notify(Direction.FORWARD, assumption);
 
 					queue.add(assumption);
 					

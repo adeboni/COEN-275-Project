@@ -10,7 +10,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
 import blackboard.BlackboardContext;
-import com.sun.xml.internal.bind.v2.TODO;
 import domain.Assumption;
 import domain.Sentence;
 import domain.Word;

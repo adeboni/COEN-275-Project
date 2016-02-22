@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="knowledge.sources.WordKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/WordKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="159" x="1535" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="domain.Dependent" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Dependent.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="252" x="3027" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="domain.Word" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Word.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="194" x="3761" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="domain.Sentence" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Sentence.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="159" x="3795" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="knowledge.sources.SmallWordKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/SmallWordKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="191" x="1567" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="knowledge.sources.PatternMatchingKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/PatternMatchingKnowledgeSource.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="222" x="1305" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="blackboard.Controller" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="262" x="1401" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="knowledge.sources.LegalStringKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/LegalStringKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="193" x="2812" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="knowledge.sources.LetterKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/LetterKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="162" x="749" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="util.SentenceUtil" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/util/SentenceUtil.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2497" y="104"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="blackboard.Blackboard" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Blackboard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1189" y="394"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="knowledge.sources.LetterFrequencyKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/LetterFrequencyKnowledgeSource.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="221" x="749" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="knowledge.sources.CommonPrefixKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/CommonPrefixKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="213" x="2318" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="knowledge.sources.ConsonantKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/ConsonantKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="189" x="48" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="knowledge.sources.LetterFrequencyKnowledgeSource.Pair" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/LetterFrequencyKnowledgeSource.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="872" y="1743"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="knowledge.KnowledgeSourcesImpl" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/KnowledgeSourcesImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="179" x="1401" y="531"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="knowledge.sources.StringKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/StringKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="162" x="2571" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="domain.Affirmation" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Affirmation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="222" x="3299" y="531"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="19" language="java" name="knowledge.sources.SentenceStructureKnowledgeSource.WordType" 
+    project="COEN 275 Project" file="/COEN 275 Project/src/knowledge/sources/SentenceStructureKnowledgeSource.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="146" x="1798" y="1688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="20" language="java" name="blackboard.Controller.ControllerState" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="167" x="1620" y="531"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="21" language="java" name="knowledge.sources.SentenceStructureKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/SentenceStructureKnowledgeSource.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="274" x="1798" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="knowledge.sources.DirectSubstitutionKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/DirectSubstitutionKnowledgeSource.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="230" x="277" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="util.BlackboardUtil" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/util/BlackboardUtil.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1985" y="113"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="24" language="java" name="knowledge.sources.WordStructureKnowledgeSource.StructureLocation" 
+    project="COEN 275 Project" file="/COEN 275 Project/src/knowledge/sources/WordStructureKnowledgeSource.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="153" x="1010" y="1688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="25" language="java" name="knowledge.sources.SolvedKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/SolvedKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="166" x="2112" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="26" language="java" name="knowledge.KnowledgeSources" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/KnowledgeSources.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="173" x="536" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="27" language="java" name="knowledge.sources.VowelKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/VowelKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="162" x="547" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="domain.BlackboardObject" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/BlackboardObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="126" x="3795" y="531"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="knowledge.sources.LetterFrequencyKnowledgeSource.SortByPercent" 
+    project="COEN 275 Project" file="/COEN 275 Project/src/knowledge/sources/LetterFrequencyKnowledgeSource.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="128" x="581" y="1688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="knowledge.sources.DoubleLetterKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/DoubleLetterKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="201" x="2571" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="knowledge.sources.CommonSuffixKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/CommonSuffixKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="212" x="3045" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="knowledge.sources.SentenceKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/SentenceKnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="182" x="2112" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="domain.Assertion" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Assertion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="138" x="3339" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="domain.Assumption" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Assumption.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="198" x="3339" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="blackboard.Cryptographer" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Cryptographer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="135" x="1106" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="36" language="java" name="domain.Dependent.Direction" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Dependent.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="127" x="3027" y="531"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="37" language="java" name="blackboard.BlackboardContext" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/BlackboardContext.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="184" x="1281" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="knowledge.KnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/KnowledgeSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="342" x="2260" y="531"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="knowledge.sources.WordStructureKnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/sources/WordStructureKnowledgeSource.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="255" x="1010" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="domain.Alphabet" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Alphabet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="178" x="3577" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="blackboard.Main" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Main.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2769" y="95"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="domain.CipherLetter" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/CipherLetter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="178" x="3299" y="1688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="util.StringTrimmer" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/util/StringTrimmer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2235" y="122"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="44">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <association id="47">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="48" name="controller"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="50">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="24"/>  
+  </nesting>  
+  <generalization id="51">    
+    <bendpoint x="3984" y="958"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <association id="54">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="55" name="pastAssumptions"/>      
+      <multiplicity id="56" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="57">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="36"/>  
+  </nesting>  
+  <association id="58">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="59" name="words"/>      
+      <multiplicity id="60" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="61">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="62">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <generalization id="64">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="65">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <association id="66">    
+    <bendpoint x="1203" y="248"/>    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="67" name="blackboard"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <bendpoint x="3308" y="1385"/>    
+    <bendpoint x="3308" y="958"/>    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="70" name="affirmations"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="72">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <generalization id="73">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="74">    
+    <bendpoint x="1115" y="248"/>    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="75" name="blackboard"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="77">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <generalization id="78">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <association id="79">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="80" name="controller"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="82">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="83" name="_assumptions"/>      
+      <multiplicity id="84" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="85">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <association id="86">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="87" name="creator"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="89">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="90">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="91" name="previousWord"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="93">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <generalization id="94">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <nesting id="95">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="15"/>  
+  </nesting>  
+  <generalization id="96">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="97">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="98" name="state"/>      
+      <multiplicity id="99" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="100">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="29"/>  
+  </nesting>  
+  <realization id="101">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <association id="102">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="103" name="letters"/>      
+      <multiplicity id="104" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="106" name="affirmations"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="109" name="charFrequencyList">        
+        <position height="18" width="101" x="776" y="1627"/>      
+      </attribute>      
+      <multiplicity id="110" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="112" name="knowledgeSources"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="115" name="lastCharFrequencyList">        
+        <position height="18" width="119" x="746" y="1639"/>      
+      </attribute>      
+      <multiplicity id="116" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="117">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <association id="118">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="119" name="target"/>      
+      <multiplicity id="120" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="121">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="122" name="instance"/>      
+      <multiplicity id="123" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="124">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="125" name="activeKnowledgeSource"/>      
+      <multiplicity id="126" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="127">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="128" name="nextWord"/>      
+      <multiplicity id="129" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="130">    
+    <bendpoint x="4005" y="1385"/>    
+    <bendpoint x="4005" y="958"/>    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <association id="131">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="132" name="firstCharFrequencyList"/>      
+      <multiplicity id="133" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="134">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="135" name="references"/>      
+      <multiplicity id="136" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="137">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <nesting id="138">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="20"/>  
+  </nesting>  
+  <association id="139">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="140" name="_solvedLetter"/>      
+      <multiplicity id="141" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="142">    
+    <bendpoint x="3287" y="958"/>    
+    <bendpoint x="3287" y="1385"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="143" name="_cipherLetter"/>      
+      <multiplicity id="144" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="145">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <association id="146">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="147" name="blackboard"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="149">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
