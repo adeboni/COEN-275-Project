@@ -53,7 +53,7 @@ public class LegalStringKnowledgeSource extends StringKnowledgeSource {
                             assumption.setValidFlag(false);
                             pastAssumptions.add(assumption);
                             assumption.notify(Direction.REVERSE, assumption);
-                            history.put(temp, new ArrayList<String>());
+                            history.put(temp, new HashSet<String>());
                             return;
                         }
                     }

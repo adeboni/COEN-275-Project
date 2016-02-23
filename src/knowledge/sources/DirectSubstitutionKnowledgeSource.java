@@ -2,6 +2,7 @@ package knowledge.sources;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -61,13 +62,12 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
             for (CipherLetter letter : letters) {
                 for (String cipher : substitutions.keySet()) {
                     if (letter.value().equals(cipher) && !history.containsKey(cipher)) {
-                        history.put(cipher, new ArrayList<String>());
+                        history.put(cipher, new HashSet<String>());
                         String plainText = substitutions.get(cipher);
 
                         Assertion assertion = new Assertion();
                         assertion.setCipherLetter(cipher);
                         assertion.setPlainLetter(plainText);
-
                         queue.add(assertion);
                         
                         System.out.println("The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");

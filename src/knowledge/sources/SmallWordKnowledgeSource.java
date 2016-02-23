@@ -12,7 +12,6 @@ import blackboard.Blackboard;
 import blackboard.BlackboardContext;
 import domain.Assumption;
 import domain.CipherLetter;
-import domain.Dependent.Direction;
 import domain.Sentence;
 import domain.Word;
 import util.SentenceUtil;
@@ -53,28 +52,21 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 			
 			for (String dictWord : getWords(letters.size(), 5)) {
 				for (int i = 0; i < letters.size(); i++) {
-					if (history.containsKey(letters.get(i).value())) continue;
-					//if (addedLetters.contains(letters.get(i).value())) continue;
-					if (history.containsKey(letters.get(i).value())) {
-						//for (String l : history.get(letters.get(i).value())) 
-							//if (l.equals(Character.toString(dictWord.charAt(i))))
-								//break;
+					if (addedLetters.contains(letters.get(i).value())) continue;
+					if (history.containsKey(word.value() + letters.get(i).value())) {
+						//if (history.get(word.value() + letters.get(i).value()).contains(Character.toString(dictWord.charAt(i))))
+							//break;
 					}
 					
 					Assumption assumption = new Assumption();
-
 					assumption.setCipherLetter(letters.get(i).value());
 					assumption.setPlainLetter(Character.toString(dictWord.charAt(i)));
-					
-					//letters.get(i).addReference(this);
-					//letters.get(i).notify(Direction.FORWARD, assumption);
-
 					queue.add(assumption);
 					
 					addedLetters.add(letters.get(i).value());
-					if (!history.containsKey(letters.get(i).value()))
-						history.put(letters.get(i).value(), new ArrayList<String>());
-					history.get(letters.get(i).value()).add(Character.toString(dictWord.charAt(i)));
+					if (!history.containsKey(word.value() + letters.get(i).value()))
+						history.put(word.value() + letters.get(i).value(), new HashSet<String>());
+					history.get(word.value() + letters.get(i).value()).add(Character.toString(dictWord.charAt(i)));
 				}
 				
 			}

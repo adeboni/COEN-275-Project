@@ -67,26 +67,39 @@ public class Controller {
      * blackboard problem string (repeatable method)
      */
     public final void processNextHint() {
-        for (KnowledgeSource ks : knowledgeSources) {
-            ks.evaluate();
+    	boolean good = false;
+    	int i = 0;
+    	
+    	for (i = 0; i < knowledgeSources.size(); i++) {
+    		KnowledgeSource ks = knowledgeSources.get(i);
+    		ks.evaluate();
             state = ControllerState.EVALUATING;
 
             if (ks.getPastAssumptions().size() > 0) {
                 activeKnowledgeSource = ks;
-                break;
-            }
-        }
+                
+                System.out.println("processNextHint-> The " + activeKnowledgeSource.toString() + " is now active.");
 
-        if (activeKnowledgeSource == null) {
+                visitBlackboard(activeKnowledgeSource);
+                leaveBlackboard(activeKnowledgeSource);
+                activeKnowledgeSource = null;
+                
+                good = true;
+            }
+    	}
+    	
+    	if (i == knowledgeSources.size())
+    		return; //SolvedKS succeeded
+    	
+        if (!good) {
             System.err.println("Not enough implemented knowledge sources!");
             System.exit(0);
         }
+        else {
+        	processNextHint();
+        }
         
-        System.out.println("processNextHint-> The " + activeKnowledgeSource.toString() + " is now active.");
 
-        visitBlackboard(activeKnowledgeSource);
-        leaveBlackboard(activeKnowledgeSource);
-        activeKnowledgeSource = null;
     }
 
 

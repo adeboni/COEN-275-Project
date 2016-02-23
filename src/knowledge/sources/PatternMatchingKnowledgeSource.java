@@ -3,6 +3,7 @@ package knowledge.sources;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -14,7 +15,6 @@ import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
-import domain.Dependent.Direction;
 import util.BlackboardUtil;
 import util.SentenceUtil;
 
@@ -43,12 +43,11 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
+        HashSet<String> addedLetters = new HashSet<String>();
 
-		for (int w = words.size() - 1; w > 0; w--) {
+		for (int w = words.size() - 1; w >= 0; w--) {
 			List<CipherLetter> letters = SentenceUtil.getLetters(words.get(w));
 
-			if (letters.size() < 4) continue;
-			
 			String regex = "";
 			int unknownCount = 0;
 			for (CipherLetter cl : BlackboardUtil.getCurrentSentenceState().get(w)) {
@@ -60,25 +59,27 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 					regex += cl.getAffirmations().getSolvedLetter().getPlainLetter();
 				}
 			}
-
-			if (unknownCount == 0 || unknownCount > 2) continue;
+			
+			if (letters.size() < 4 || unknownCount == 0 || unknownCount > 2) continue;
 						
-			for (String dictWord : getWords(regex, 2)) {
+			for (String dictWord : getWords(regex, 5)) {
 				for (int i = 0; i < letters.size(); i++) {
-					if (history.containsKey(letters.get(i).value())) continue;
+					if (addedLetters.contains(letters.get(i).value())) continue;
 					if (regex.charAt(i) != '.') continue;
 					
+					if (history.containsKey(words.get(w).value() + letters.get(i).value()) && 
+							history.get(words.get(w).value() + letters.get(i).value()).contains(Character.toString(dictWord.charAt(i))))
+							break;
+					
 					Assumption assumption = new Assumption();
-
 					assumption.setCipherLetter(letters.get(i).value());
 					assumption.setPlainLetter(Character.toString(dictWord.charAt(i)));
-					
-					letters.get(i).addReference(this);
-					letters.get(i).notify(Direction.REVERSE, assumption);
-
 					queue.add(assumption);
 					
-					history.put(letters.get(i).value(), new ArrayList<String>());
+					addedLetters.add(letters.get(i).value());
+					if (!history.containsKey(words.get(w).value() + letters.get(i).value()))
+						history.put(words.get(w).value() + letters.get(i).value(), new HashSet<String>());
+					history.get(words.get(w).value() + letters.get(i).value()).add(Character.toString(dictWord.charAt(i)));
 				}
 				
 			}

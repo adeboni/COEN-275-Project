@@ -19,7 +19,8 @@ import util.SentenceUtil;
 
 public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
 	private static ArrayList<String> dict = new ArrayList<String>();
-
+	private static Scanner in = new Scanner(System.in);
+	
     @Override
     public String toString() {
         return "SolvedKnowledgeSource";
@@ -63,7 +64,7 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         	System.out.print(" ");
         }
         System.out.print("\n");
-        Scanner in = new Scanner(System.in);
+        
         String answer = in.next();
         if (!answer.equals("y")) {
         	System.out.println("Which word is wrong?");
@@ -79,7 +80,7 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         		wrongIndices[i] = Integer.parseInt(wrongLetters[i]);
         	
         	for (int index : wrongIndices) {
-        		//TODO: go through these cipherletters and mark them as not solved
+        		//go through these cipherletters and mark them as not solved
         		ls.get(index).setAffirmation(new Affirmation(ls.get(index)));
         	}
         	
@@ -89,7 +90,6 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         
         queue.add(new Assumption());
         this.setPastAssumptions(queue);
-        in.close();
     }
     
  

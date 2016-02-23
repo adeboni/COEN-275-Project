@@ -3,6 +3,7 @@ package knowledge.sources;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -68,7 +69,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
                     letters.get(index).notify(Direction.REVERSE, assumption);
                     
                     queue.add(assumption);
-                    history.put(letters.get(index).value(), new ArrayList<String>());
+                    history.put(letters.get(index).value(), new HashSet<String>());
                     doubleLetters.remove(0);
                     break;
 
