@@ -55,6 +55,8 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
 			if (!dict.contains(currWord)) return;
 		}
         
+    	blackboard.updateHistory();
+        
         //ask user if it's good
         System.out.println("Does the following sentence make sense? (y/n)");
         for (int w = 0; w < words.size(); w++) {

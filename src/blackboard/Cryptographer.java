@@ -21,31 +21,23 @@ public final class Cryptographer {
      * Public method to decipher the coded cipher text
      * 
      * @param ciphertext
-     *            the String to be decoded or translated into a meaningful
-     *            sentence
+     *            the String to be decoded or translated into a meaningful sentence
      * @return String decrypted
      */
     public String decipher(String ciphertext) {
-        init();
+    	BlackboardContext context = BlackboardContext.getInstance();
+        blackboard = context.getBlackboard();
+        controller = context.getController();
         blackboard.reset();
         blackboard.assertProblem(ciphertext);
         controller.reset();
         controller.connect();
+        blackboard.initHistory();
         return runController();
     }
 
     /**
-     * Initialize the cryptographer and get the context objects
-     */
-    private void init() {
-        BlackboardContext context = BlackboardContext.getInstance();
-        this.blackboard = context.getBlackboard();
-        this.controller = context.getController();
-    }
-
-    /**
-     * Private method to loop while the controller processes hints to solve the
-     * puzzle.
+     * Private method to loop while the controller processes hints to solve the puzzle.
      * 
      * @return solution as String
      */

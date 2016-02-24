@@ -85,4 +85,5 @@ public final class BlackboardUtil {
     public static List<List<CipherLetter>> getCurrentSentenceState() {
     	return currentSentenceState;
     }
+    
 }

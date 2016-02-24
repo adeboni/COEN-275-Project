@@ -1,18 +1,11 @@
 package knowledge;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import domain.Assumption;
 
 public abstract class KnowledgeSource {
 	
-    /**
-     * List of letters already tried by this knowledge source
-     */
-	protected HashMap<String, HashSet<String>> history = new HashMap<String, HashSet<String>>();
-
     /**
      * Attribute queue of assumptions made by KnowledgeSource
      */
@@ -45,7 +38,6 @@ public abstract class KnowledgeSource {
      */
     public void reset() {
         pastAssumptions.clear();
-        history.clear();
     }
        
     public abstract String toString();

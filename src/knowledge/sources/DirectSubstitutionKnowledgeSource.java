@@ -15,11 +15,11 @@ import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
-import domain.Dependent.Direction;
 
 public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
 	private final Map<String, String> substitutions = new HashMap<String, String>();
+	private HashSet<String> history = new HashSet<String>();
 	
 	public DirectSubstitutionKnowledgeSource() {
 		substitutions.put("W", "V");
@@ -61,8 +61,8 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
             for (CipherLetter letter : letters) {
                 for (String cipher : substitutions.keySet()) {
-                    if (letter.value().equals(cipher) && !history.containsKey(cipher)) {
-                        history.put(cipher, new HashSet<String>());
+                    if (letter.value().equals(cipher) && !history.contains(cipher)) {
+                        history.add(cipher);
                         String plainText = substitutions.get(cipher);
 
                         Assertion assertion = new Assertion();

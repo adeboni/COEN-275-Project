@@ -63,27 +63,30 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 			if (letters.size() < 4 || unknownCount == 0 || unknownCount > 2) continue;
 									
 			for (String dictWord : getWords(regex, 5)) {
+				boolean wholeWordGood = true;
+				ConcurrentLinkedQueue<Assumption> tempQueue = new ConcurrentLinkedQueue<Assumption>();
+				
 				for (int i = 0; i < letters.size(); i++) {
 					if (addedLetters.contains(letters.get(i).value())) continue;
 					if (regex.charAt(i) != '.') continue;
 					
-					if (history.containsKey(words.get(w).value() + letters.get(i).value()) && 
-							history.get(words.get(w).value() + letters.get(i).value()).contains(Character.toString(dictWord.charAt(i))))
-							break;
+					if (blackboard.checkPair(letters.get(i).value(), dictWord.charAt(i))) {
+						wholeWordGood = false;
+						break;
+					}
 					
-					System.out.println("PatternMatching KS setting " + letters.get(i).value() + " to " + Character.toString(dictWord.charAt(i)));
+					System.out.println("PatternMatching KS setting " + letters.get(i).value() + " to " + dictWord.charAt(i));
 					
 					Assumption assumption = new Assumption();
 					assumption.setCipherLetter(letters.get(i).value());
 					assumption.setPlainLetter(Character.toString(dictWord.charAt(i)));
-					queue.add(assumption);
+					tempQueue.add(assumption);
 					
 					addedLetters.add(letters.get(i).value());
-					if (!history.containsKey(words.get(w).value() + letters.get(i).value()))
-						history.put(words.get(w).value() + letters.get(i).value(), new HashSet<String>());
-					history.get(words.get(w).value() + letters.get(i).value()).add(Character.toString(dictWord.charAt(i)));
 				}
 				
+				if (wholeWordGood)
+					queue.addAll(tempQueue);
 			}
 		}
 			

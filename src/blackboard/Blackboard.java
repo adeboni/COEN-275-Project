@@ -1,6 +1,8 @@
 package blackboard;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -195,4 +197,28 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         return false;
     }
 
+    
+    private HashMap<String, HashSet<String>> cipherLetterHistory = new HashMap<String, HashSet<String>>();
+    
+    public void initHistory() {
+    	for (Word w : getSentence().getWords())
+    		for (CipherLetter l : w.getLetters())
+    			if (!cipherLetterHistory.containsKey(l.value()))
+    				cipherLetterHistory.put(l.value(), new HashSet<String>());
+    }
+    
+    public void updateHistory() {
+    	for (int w = 0; w < getSentence().getWords().size(); w++)
+	    	for (CipherLetter cl : BlackboardUtil.getCurrentSentenceState().get(w)) 
+				if (cl.getAffirmations().getSolvedLetter().getPlainLetter() != null)
+					cipherLetterHistory.get(cl.value()).add(cl.getAffirmations().getSolvedLetter().getPlainLetter());
+    }
+    
+    public boolean checkPair(String cipherLetter, char plainLetter) {
+    	return checkPair(cipherLetter, Character.toString(plainLetter));
+    }
+    
+    public boolean checkPair(String cipherLetter, String plainLetter) {
+    	return cipherLetterHistory.containsKey(cipherLetter) && cipherLetterHistory.get(cipherLetter).contains(plainLetter);
+    }
 }

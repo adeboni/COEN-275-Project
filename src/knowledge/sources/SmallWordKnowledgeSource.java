@@ -14,6 +14,7 @@ import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
+import util.BlackboardUtil;
 import util.SentenceUtil;
 
 public class SmallWordKnowledgeSource extends WordKnowledgeSource {
@@ -45,33 +46,51 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
         List<Word> words = SentenceUtil.getWords(sentence);
         HashSet<String> addedLetters = new HashSet<String>();
 
-		for (Word word : words) {
-			List<CipherLetter> letters = SentenceUtil.getLetters(word);
+        for (int w = words.size() - 1; w >= 0; w--) {
+			List<CipherLetter> letters = SentenceUtil.getLetters(words.get(w));
 
-			if (letters.size() > 3) continue;
+			String regex = "";
+			int unknownCount = 0;
+			for (CipherLetter cl : BlackboardUtil.getCurrentSentenceState().get(w)) {
+				if (cl.getAffirmations().getSolvedLetter().getPlainLetter() == null) {
+					regex += ".";
+					unknownCount++;
+				}
+				else {
+					regex += cl.getAffirmations().getSolvedLetter().getPlainLetter();
+				}
+			}
 			
+			if (letters.size() > 3 || unknownCount == 0) continue;
+									
 			for (String dictWord : getWords(letters.size(), 5)) {
+				boolean wholeWordGood = true;
+				ConcurrentLinkedQueue<Assumption> tempQueue = new ConcurrentLinkedQueue<Assumption>();
+				
 				for (int i = 0; i < letters.size(); i++) {
 					if (addedLetters.contains(letters.get(i).value())) continue;
-					if (history.containsKey(word.value() + letters.get(i).value())) {
-						//if (history.get(word.value() + letters.get(i).value()).contains(Character.toString(dictWord.charAt(i))))
-							//break;
+					if (regex.charAt(i) != '.') continue;
+					
+					if (blackboard.checkPair(letters.get(i).value(), dictWord.charAt(i))) {
+						wholeWordGood = false;
+						break;
 					}
+					
+					System.out.println("SmallWord KS setting " + letters.get(i).value() + " to " + dictWord.charAt(i));
 					
 					Assumption assumption = new Assumption();
 					assumption.setCipherLetter(letters.get(i).value());
 					assumption.setPlainLetter(Character.toString(dictWord.charAt(i)));
-					queue.add(assumption);
+					tempQueue.add(assumption);
 					
 					addedLetters.add(letters.get(i).value());
-					if (!history.containsKey(word.value() + letters.get(i).value()))
-						history.put(word.value() + letters.get(i).value(), new HashSet<String>());
-					history.get(word.value() + letters.get(i).value()).add(Character.toString(dictWord.charAt(i)));
 				}
 				
+				if (wholeWordGood)
+					queue.addAll(tempQueue);
 			}
 		}
-			
+        
 		this.setPastAssumptions(queue);
 	}
         

@@ -14,7 +14,6 @@ import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
-import domain.Dependent.Direction;
 import util.SentenceUtil;
 
 public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
@@ -44,6 +43,7 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
         List<String> doubleLetters = doubleLetter();
+        HashSet<String> addedLetters = new HashSet<String>();
 
         for (Word word : words) {
         	List<CipherLetter> letters = SentenceUtil.getLetters(word);
@@ -56,24 +56,17 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
                     break;
                 }
             }
-
-            if (found && !history.containsKey(letters.get(index).value())) {
-            	for (String dl : doubleLetters) {
-            		String firstLetterInMatch = dl.substring(0,1);
-
-                    Assumption assumption = new Assumption();
-                    assumption.setCipherLetter(letters.get(index).value());
-                    assumption.setPlainLetter(firstLetterInMatch);
-                    
-                    letters.get(index).addReference(this);
-                    letters.get(index).notify(Direction.REVERSE, assumption);
-                    
-                    queue.add(assumption);
-                    history.put(letters.get(index).value(), new HashSet<String>());
-                    doubleLetters.remove(0);
-                    break;
-
-            	}
+            
+            if (found && doubleLetters.size() > 0 && !addedLetters.contains(letters.get(index).value())) {
+        		String firstLetterInMatch = doubleLetters.get(0).substring(0,1);
+        		
+                Assumption assumption = new Assumption();
+                assumption.setCipherLetter(letters.get(index).value());
+                assumption.setPlainLetter(firstLetterInMatch);
+                queue.add(assumption);
+                
+                addedLetters.add(letters.get(index).value());
+                doubleLetters.remove(0);
             }
         }
 

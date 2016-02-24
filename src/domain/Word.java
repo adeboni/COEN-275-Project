@@ -103,5 +103,7 @@ public class Word extends BlackboardObject {
     public void setNextWord(Word nextWord) {
         this.nextWord = nextWord;
     }
+    
+    
 
 }

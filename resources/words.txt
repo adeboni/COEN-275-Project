@@ -19969,3 +19969,4 @@ traction
 whiting
 bromide
 freshet
+stall
