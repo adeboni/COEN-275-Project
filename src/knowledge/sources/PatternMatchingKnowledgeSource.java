@@ -61,7 +61,7 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 			}
 			
 			if (letters.size() < 4 || unknownCount == 0 || unknownCount > 2) continue;
-						
+									
 			for (String dictWord : getWords(regex, 5)) {
 				for (int i = 0; i < letters.size(); i++) {
 					if (addedLetters.contains(letters.get(i).value())) continue;
@@ -70,6 +70,8 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 					if (history.containsKey(words.get(w).value() + letters.get(i).value()) && 
 							history.get(words.get(w).value() + letters.get(i).value()).contains(Character.toString(dictWord.charAt(i))))
 							break;
+					
+					System.out.println("PatternMatching KS setting " + letters.get(i).value() + " to " + Character.toString(dictWord.charAt(i)));
 					
 					Assumption assumption = new Assumption();
 					assumption.setCipherLetter(letters.get(i).value());

@@ -80,8 +80,10 @@ public class Controller {
                 
                 System.out.println("processNextHint-> The " + activeKnowledgeSource.toString() + " is now active.");
 
-                visitBlackboard(activeKnowledgeSource);
-                leaveBlackboard(activeKnowledgeSource);
+                while (ks.getPastAssumptions().size() > 0) {
+	                visitBlackboard(activeKnowledgeSource);
+	                leaveBlackboard(activeKnowledgeSource);
+                }
                 activeKnowledgeSource = null;
                 
                 good = true;
@@ -94,11 +96,7 @@ public class Controller {
         if (!good) {
             System.err.println("Not enough implemented knowledge sources!");
             System.exit(0);
-        }
-        else {
-        	processNextHint();
-        }
-        
+        }       
 
     }
 
