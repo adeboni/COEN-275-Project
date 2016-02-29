@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.9" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="blackboard.Main" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Main.java" binary="false" label="main" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="111" y="0"/>    
+    <execution id="2">      
+      <position height="1368" width="0" x="0" y="112"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="blackboard.Cryptographer" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Cryptographer.java" binary="false" label="cryptographer" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="4">      
+      <position height="1326" width="0" x="0" y="133"/>    
+    </execution>    
+    <execution id="23">      
+      <position height="623" width="0" x="0" y="815"/>    
+    </execution>  
+  </object>  
+  <object id="30" language="java" name="blackboard.BlackboardContext" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/BlackboardContext.java" binary="false" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="7">      
+      <position height="21" width="0" x="0" y="154"/>    
+    </execution>  
+  </object>  
+  <object id="31" language="java" name="blackboard.BlackboardContext" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/BlackboardContext.java" binary="false" label="context" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="9">      
+      <position height="21" width="0" x="0" y="196"/>    
+    </execution>    
+    <execution id="11">      
+      <position height="21" width="0" x="0" y="238"/>    
+    </execution>  
+  </object>  
+  <object id="32" language="java" name="blackboard.Blackboard" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Blackboard.java" binary="false" label="blackboard" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="13">      
+      <position height="84" width="0" x="0" y="280"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="220" width="0" x="0" y="385"/>    
+    </execution>    
+    <execution id="21">      
+      <position height="21" width="0" x="0" y="752"/>    
+    </execution>    
+    <execution id="34">      
+      <position height="21" width="0" x="0" y="322"/>    
+    </execution>    
+    <execution id="40">      
+      <position height="21" width="0" x="0" y="511"/>    
+    </execution>    
+    <execution id="42">      
+      <position height="21" width="0" x="0" y="563"/>    
+    </execution>    
+    <execution id="27">      
+      <position height="115" width="0" x="0" y="1249"/>    
+    </execution>    
+    <execution id="44">      
+      <position height="21" width="0" x="0" y="1291"/>    
+    </execution>    
+    <execution id="47">      
+      <position height="21" width="0" x="0" y="1061"/>    
+    </execution>    
+    <execution id="48">      
+      <position height="21" width="0" x="0" y="1165"/>    
+    </execution>  
+  </object>  
+  <object id="49" language="java" name="domain.Sentence" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/domain/Sentence.java" binary="false" label="sentence" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="36">      
+      <position height="21" width="0" x="0" y="406"/>    
+    </execution>    
+    <execution id="46">      
+      <position height="21" width="0" x="0" y="1322"/>    
+    </execution>  
+  </object>  
+  <object id="50" language="java" name="util.StringTrimmer" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/util/StringTrimmer.java" binary="false" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="38">      
+      <position height="21" width="0" x="0" y="448"/>    
+    </execution>  
+  </object>  
+  <object id="51" language="java" name="blackboard.Controller" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/Controller.java" binary="false" label="controller" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="17">      
+      <position height="63" width="0" x="0" y="626"/>    
+    </execution>    
+    <execution id="19">      
+      <position height="21" width="0" x="0" y="710"/>    
+    </execution>    
+    <execution id="25">      
+      <position height="382" width="0" x="0" y="846"/>    
+    </execution>    
+    <execution id="29">      
+      <position height="21" width="0" x="0" y="1396"/>    
+    </execution>    
+    <execution id="57">      
+      <position height="157" width="0" x="0" y="946"/>    
+    </execution>    
+    <execution id="59">      
+      <position height="73" width="0" x="0" y="1134"/>    
+    </execution>  
+  </object>  
+  <object id="64" language="java" name="blackboard.BlackboardContext" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/blackboard/BlackboardContext.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="61">      
+      <position height="21" width="0" x="0" y="1019"/>    
+    </execution>  
+  </object>  
+  <object id="65" language="java" name="knowledge.KnowledgeSource" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/KnowledgeSource.java" binary="false" label="ks" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="55">      
+      <position height="21" width="0" x="0" y="860"/>    
+    </execution>  
+  </object>  
+  <object id="66" language="java" name="knowledge.KnowledgeSourcesImpl" project="COEN 275 Project" 
+    file="/COEN 275 Project/src/knowledge/KnowledgeSourcesImpl.java" binary="false" label="knowledgeSources" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="53">      
+      <position height="21" width="0" x="0" y="647"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="decipher(java.lang.String):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="getInstance():blackboard.BlackboardContext" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="8" operation="getBlackboard():blackboard.Blackboard" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
+  </message>  
+  <message id="10" operation="getController():blackboard.Controller" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="11"/>  
+  </message>  
+  <message id="12" operation="reset():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>  
+  <message id="14" operation="assertProblem(java.lang.String):void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>  
+  <message id="16" operation="reset():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>  
+  <message id="18" operation="connect():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="19"/>  
+  </message>  
+  <message id="20" operation="initHistory():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="21"/>  
+  </message>  
+  <message id="22" operation="runController():java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="23"/>  
+  </message>  
+  <message id="24" operation="processNextHint():void" asynchronous="false">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="25"/>  
+  </message>  
+  <message id="26" operation="isSolved():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="27"/>  
+  </message>  
+  <message id="28" operation="done():void" asynchronous="false">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="29"/>  
+  </message>  
+  <message id="33" operation="clear():void" asynchronous="false">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="34"/>  
+  </message>  
+  <message id="35" operation="Sentence(java.lang.String)" asynchronous="false">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="36"/>  
+  </message>  
+  <message id="37" operation="trim(java.lang.String):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="38"/>  
+  </message>  
+  <message id="39" operation="buildSentenceGraph(domain.Sentence):void" asynchronous="false">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="40"/>  
+  </message>  
+  <message id="41" operation="registerBlackboardObjects(domain.Sentence):void" asynchronous="false">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="42"/>  
+  </message>  
+  <message id="43" operation="getSentence():domain.Sentence" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="44"/>  
+  </message>  
+  <message id="45" operation="isSolved():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="46"/>  
+  </message>  
+  <message id="52" operation="reset():void" asynchronous="false">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="53"/>  
+  </message>  
+  <message id="54" operation="evaluate():void" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="55"/>  
+  </message>  
+  <message id="56" operation="visitBlackboard(knowledge.KnowledgeSource):void" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="57"/>  
+  </message>  
+  <message id="58" operation="leaveBlackboard(knowledge.KnowledgeSource):void" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="59"/>  
+  </message>  
+  <message id="60" operation="getBlackboard():blackboard.Blackboard" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="61"/>  
+  </message>  
+  <message id="62" operation="connect(knowledge.KnowledgeSource):void" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="47"/>  
+  </message>  
+  <message id="63" operation="disconnect(knowledge.KnowledgeSource):void" asynchronous="false">    
+    <end type="SOURCE" refId="59"/>    
+    <end type="TARGET" refId="48"/>  
+  </message>
+</sequence-diagram>
