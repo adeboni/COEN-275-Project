@@ -44,7 +44,7 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = SentenceUtil.getWords(sentence);
         HashSet<String> addedLetters = new HashSet<String>();
-
+        
 		for (int w = words.size() - 1; w >= 0; w--) {
 			List<CipherLetter> letters = SentenceUtil.getLetters(words.get(w));
 

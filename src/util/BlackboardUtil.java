@@ -80,6 +80,12 @@ public final class BlackboardUtil {
         return markerLine;
     }
     
+    public static void initSentenceState(Sentence sentence) {
+        currentSentenceState.clear();
+        for (Word word : sentence.getWords()) 
+            currentSentenceState.add(word.getLetters());
+    }
+    
     private static List<List<CipherLetter>> currentSentenceState = new ArrayList<List<CipherLetter>>();
     
     public static List<List<CipherLetter>> getCurrentSentenceState() {

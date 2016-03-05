@@ -33,6 +33,7 @@ public final class Cryptographer {
         controller.reset();
         controller.connect();
         blackboard.initHistory();
+        BlackboardUtil.initSentenceState(blackboard.getSentence());
         return runController();
     }
 
