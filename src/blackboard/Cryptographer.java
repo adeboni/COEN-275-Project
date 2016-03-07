@@ -43,7 +43,7 @@ public final class Cryptographer {
      * @return solution as String
      */
     private String runController() {
-        int maxTries = 20;
+        int maxTries = 500;
         for (int i = 0; i < maxTries; ++i) {
             controller.processNextHint();
             if (blackboard.isSolved()) {

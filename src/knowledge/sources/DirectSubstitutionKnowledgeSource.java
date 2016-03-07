@@ -1,11 +1,9 @@
 package knowledge.sources;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import blackboard.Blackboard;
@@ -15,6 +13,7 @@ import domain.Assumption;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
+import util.BlackboardUtil;
 
 public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
@@ -24,23 +23,24 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 	public DirectSubstitutionKnowledgeSource() {
 		substitutions.put("W", "V");
 		
-		/*
-		Scanner in = new Scanner(System.in);
+		System.out.println("Preloaded direct substitutions:");
+		for (String key : substitutions.keySet())
+			System.out.println(key + "->" + substitutions.get(key));
+		
 		while (true) {
 
 			System.out.print("Enter a direct substitution in the form X->Y (or anything else to finish): ");
 			
 			try {
-				String[] text = in.nextLine().split("->");
+				String[] text = BlackboardUtil.scanner.nextLine().split("->");
 				substitutions.put(text[0], text[1]);
 			}
 			catch (Exception ex) {
-				in.close();
 				return;
 			}
 		
 		}
-		*/
+		
 	}
 	
 		

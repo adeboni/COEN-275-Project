@@ -17,6 +17,7 @@ import domain.Sentence;
 import domain.Word;
 import util.BlackboardUtil;
 import util.SentenceUtil;
+import util.WordRegex;
 
 public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 	
@@ -45,32 +46,21 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
         List<Word> words = SentenceUtil.getWords(sentence);
         HashSet<String> addedLetters = new HashSet<String>();
         
-		for (int w = words.size() - 1; w >= 0; w--) {
+		for (int w = 0; w < words.size(); w++) {
 			List<CipherLetter> letters = SentenceUtil.getLetters(words.get(w));
-
-			String regex = "";
-			int unknownCount = 0;
-			for (CipherLetter cl : BlackboardUtil.getCurrentSentenceState().get(w)) {
-				if (cl.getAffirmations().getSolvedLetter().getPlainLetter() == null) {
-					regex += ".";
-					unknownCount++;
-				}
-				else {
-					regex += cl.getAffirmations().getSolvedLetter().getPlainLetter();
-				}
-			}
+			WordRegex wr = BlackboardUtil.getWordRegex(w);
 			
-			if (letters.size() < 4 || unknownCount == 0 || unknownCount > 2) continue;
+			if (letters.size() < 4 || wr.unknownCount == 0 || wr.unknownCount > 2) continue;
 									
-			for (String dictWord : getWords(regex, 5)) {
+			for (String dictWord : getWords(wr.regex)) {
 				boolean wholeWordGood = true;
 				ConcurrentLinkedQueue<Assumption> tempQueue = new ConcurrentLinkedQueue<Assumption>();
 				
 				for (int i = 0; i < letters.size(); i++) {
 					if (addedLetters.contains(letters.get(i).value())) continue;
-					if (regex.charAt(i) != '.') continue;
+					if (wr.regex.charAt(i) != '.') continue;
 					
-					if (blackboard.checkPair(letters.get(i).value(), dictWord.charAt(i))) {
+					if (blackboard.checkPair(letters.get(i).value(), dictWord.charAt(i)) || blackboard.boardedPlainLetters.contains(dictWord.charAt(i))) {
 						wholeWordGood = false;
 						break;
 					}
@@ -83,30 +73,33 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 					tempQueue.add(assumption);
 					
 					addedLetters.add(letters.get(i).value());
+					blackboard.boardedPlainLetters.add(letters.get(i).value());
 				}
 				
-				if (wholeWordGood)
+				if (wholeWordGood) {
 					queue.addAll(tempQueue);
+					break;
+				}
 			}
 		}
 			
 		this.setPastAssumptions(queue);
 	}
     
-    private static List<String> getWords(String regex, int numWords)  {
+    private static List<String> getWords(String regex)  {
 		List<String> ret = new ArrayList<String>();
 
 		for (int i = 0; i < dict.size(); i++) {
 			if (Pattern.matches(regex, dict.get(i)))
 				ret.add(dict.get(i));
-			if (ret.size() == numWords) break;
 		}
 		
 		return ret;
 	}
 	
 	public static void main(String[] args) {
-		List<String> words = getWords(".HELL", 5);
+		new PatternMatchingKnowledgeSource();
+		List<String> words = getWords("[IHAVESNTML]{3}");
 		for (String s : words) {
 			System.out.println(s);
 		}

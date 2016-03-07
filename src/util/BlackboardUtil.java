@@ -2,11 +2,13 @@ package util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import blackboard.Blackboard;
 import domain.CipherLetter;
 import domain.Sentence;
 import domain.Word;
+import knowledge.sources.SolvedKnowledgeSource;
 
 
 public final class BlackboardUtil {
@@ -91,5 +93,32 @@ public final class BlackboardUtil {
     public static List<List<CipherLetter>> getCurrentSentenceState() {
     	return currentSentenceState;
     }
+    
+    public static Scanner scanner = new Scanner(System.in);
+    
+    
+    
+    public static WordRegex getWordRegex(int word) {
+    	String regex = "";
+		int unknownCount = 0;
+		for (CipherLetter cl : BlackboardUtil.getCurrentSentenceState().get(word)) {
+			if (cl.getAffirmations().getSolvedLetter().getPlainLetter() == null) {
+				regex += ".";
+				unknownCount++;
+			}
+			else {
+				regex += cl.getAffirmations().getSolvedLetter().getPlainLetter();
+			}
+		}
+		
+		if (unknownCount == 0 && !SolvedKnowledgeSource.isRealWord(regex)) {
+			unknownCount = regex.length();
+			regex = "";
+			for (int i = 0; i < unknownCount; i++) regex += ".";
+		}
+		
+		return new WordRegex(unknownCount, regex);
+    }
+    
     
 }

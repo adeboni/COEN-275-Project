@@ -19,7 +19,6 @@ import util.SentenceUtil;
 
 public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
 	private static ArrayList<String> dict = new ArrayList<String>();
-	private static Scanner in = new Scanner(System.in);
 	
     @Override
     public String toString() {
@@ -37,6 +36,10 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
 		}
     }
     
+    public static boolean isRealWord(String word) {
+    	return dict.contains(word);
+    }
+    
     @Override
     public void evaluate() {
     	Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
@@ -52,7 +55,7 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
 				currWord += cl.getAffirmations().getSolvedLetter().getPlainLetter();
 			}
 			
-			if (!dict.contains(currWord)) return;
+			if (!isRealWord(currWord)) return;
 		}
         
     	blackboard.updateHistory();
@@ -67,16 +70,16 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         }
         System.out.print("\n");
         
-        String answer = in.next();
+        String answer = BlackboardUtil.scanner.next();
         if (!answer.equals("y")) {
         	System.out.println("Which word is wrong?");
-        	int n = in.nextInt();
+        	int n = BlackboardUtil.scanner.nextInt();
         	System.out.println("Which letter(s) are wrong? (Comma separated)");
         	List<CipherLetter> ls = BlackboardUtil.getCurrentSentenceState().get(n);
         	for (int i = 0; i < ls.size(); i++) 
         		System.out.print("(" + i + ")" + ls.get(i).getAffirmations().getSolvedLetter().getPlainLetter() + " ");
         	System.out.print("\n");
-        	String[] wrongLetters = in.next().split(",");
+        	String[] wrongLetters = BlackboardUtil.scanner.next().split(",");
         	int[] wrongIndices = new int[wrongLetters.length];
         	for (int i = 0; i < wrongLetters.length; i++) 
         		wrongIndices[i] = Integer.parseInt(wrongLetters[i]);

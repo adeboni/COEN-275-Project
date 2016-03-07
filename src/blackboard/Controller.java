@@ -69,6 +69,7 @@ public class Controller {
     public final void processNextHint() {
     	boolean good = false;
     	int i = 0;
+    	BlackboardContext.getInstance().getBlackboard().boardedPlainLetters.clear();
     	
     	for (i = 0; i < knowledgeSources.size(); i++) {
     		KnowledgeSource ks = knowledgeSources.get(i);

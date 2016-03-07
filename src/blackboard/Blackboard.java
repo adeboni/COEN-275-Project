@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import domain.Affirmation;
@@ -127,7 +128,6 @@ public class Blackboard extends ArrayList<BlackboardObject> {
                 Alphabet alphabet = affirmation.getSolvedLetter();
                 
                 if (!assumption.isValid() && affirmation.hasAssumption() && assumption.equals(affirmation.mostRecent())) {
-                    // TODO: do not pop this and need to update the PlainLetter properly
                     affirmation.pop();
                     alphabet.setPlainLetter(null);
 
@@ -221,4 +221,8 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     public boolean checkPair(String cipherLetter, String plainLetter) {
     	return cipherLetterHistory.containsKey(cipherLetter) && cipherLetterHistory.get(cipherLetter).contains(plainLetter);
     }
+    
+    public Set<String> boardedPlainLetters = new HashSet<String>();
+    
+    
 }

@@ -16,6 +16,7 @@ import domain.Sentence;
 import domain.Word;
 import util.BlackboardUtil;
 import util.SentenceUtil;
+import util.WordRegex;
 
 public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
@@ -46,32 +47,21 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
         List<Word> words = SentenceUtil.getWords(sentence);
         HashSet<String> addedLetters = new HashSet<String>();
 
-        for (int w = words.size() - 1; w >= 0; w--) {
+        for (int w = 0; w < words.size(); w++) {
 			List<CipherLetter> letters = SentenceUtil.getLetters(words.get(w));
-
-			String regex = "";
-			int unknownCount = 0;
-			for (CipherLetter cl : BlackboardUtil.getCurrentSentenceState().get(w)) {
-				if (cl.getAffirmations().getSolvedLetter().getPlainLetter() == null) {
-					regex += ".";
-					unknownCount++;
-				}
-				else {
-					regex += cl.getAffirmations().getSolvedLetter().getPlainLetter();
-				}
-			}
+			WordRegex wr = BlackboardUtil.getWordRegex(w);
 			
-			if (letters.size() > 3 || unknownCount == 0) continue;
+			if (letters.size() > 3 || wr.unknownCount == 0) continue;
 									
-			for (String dictWord : getWords(letters.size(), 5)) {
+			for (String dictWord : getWords(letters.size())) {
 				boolean wholeWordGood = true;
 				ConcurrentLinkedQueue<Assumption> tempQueue = new ConcurrentLinkedQueue<Assumption>();
 				
 				for (int i = 0; i < letters.size(); i++) {
 					if (addedLetters.contains(letters.get(i).value())) continue;
-					if (regex.charAt(i) != '.') continue;
+					if (wr.regex.charAt(i) != '.') continue;
 					
-					if (blackboard.checkPair(letters.get(i).value(), dictWord.charAt(i))) {
+					if (blackboard.checkPair(letters.get(i).value(), dictWord.charAt(i)) || blackboard.boardedPlainLetters.contains(dictWord.charAt(i))) {
 						wholeWordGood = false;
 						break;
 					}
@@ -84,10 +74,13 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 					tempQueue.add(assumption);
 					
 					addedLetters.add(letters.get(i).value());
+					blackboard.boardedPlainLetters.add(letters.get(i).value());
 				}
 				
-				if (wholeWordGood)
+				if (wholeWordGood) {
 					queue.addAll(tempQueue);
+					break;
+				}
 			}
 		}
         
@@ -95,20 +88,19 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 	}
         
     
-    private static List<String> getWords(int numLetters, int numWords) {
+    private static List<String> getWords(int numLetters) {
 		List<String> ret = new ArrayList<String>();
 		
 		for (int i = 0; i < dict.size(); i++) {
 			if (dict.get(i).length() == numLetters)
 				ret.add(dict.get(i));
-			if (ret.size() == numWords) break;
 		}
 			
 		return ret;
 	}
 	
 	public static void main(String[] args) {
-		for (String s : getWords(1, 10)) {
+		for (String s : getWords(1)) {
 			System.out.println(s);
 		}
 	}
