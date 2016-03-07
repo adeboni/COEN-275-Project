@@ -18,7 +18,6 @@ import util.BlackboardUtil;
 public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
 	private final Map<String, String> substitutions = new HashMap<String, String>();
-	private HashSet<String> history = new HashSet<String>();
 	
 	public DirectSubstitutionKnowledgeSource() {
 		substitutions.put("W", "V");
@@ -55,14 +54,14 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
         Sentence sentence = blackboard.getSentence();
         ConcurrentLinkedQueue<Assumption> queue = this.getPastAssumptions();
         List<Word> words = sentence.getWords();
+        HashSet<String> addedLetters = new HashSet<String>();
 
         for (Word word : words) {
             List<CipherLetter> letters = word.getLetters();
 
             for (CipherLetter letter : letters) {
                 for (String cipher : substitutions.keySet()) {
-                    if (letter.value().equals(cipher) && !history.contains(cipher)) {
-                        history.add(cipher);
+                    if (letter.value().equals(cipher) && !addedLetters.contains(cipher)) {
                         String plainText = substitutions.get(cipher);
 
                         Assertion assertion = new Assertion();
@@ -70,7 +69,10 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
                         assertion.setPlainLetter(plainText);
                         queue.add(assertion);
                         
-                        System.out.println("The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
+                        System.out.println("DirectSubstitution KS made an assertion to change the letter " + cipher + " to letter " + plainText);
+                        
+                        addedLetters.add(cipher);
+                        blackboard.boardedPlainLetters.add(plainText);
                     }
                 }
             }

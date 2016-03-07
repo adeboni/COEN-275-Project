@@ -47,7 +47,8 @@ public class LetterFrequencyKnowledgeSource extends LetterKnowledgeSource {
 			if (index < 0 || addedLetters.contains(letters.get(index).value())) continue;
 									
 			for (Character c : letterList) {
-				if (blackboard.checkPair(letters.get(index).value(), c) || blackboard.boardedPlainLetters.contains(c.toString())) 
+				if (blackboard.checkPair(letters.get(index).value(), c) || blackboard.boardedPlainLetters.contains(c.toString()) ||
+						!SolvedKnowledgeSource.isRealWord(wr.regex.replace('.', c))) 
 					continue;
 				
 				System.out.println("LetterFrequency KS setting " + letters.get(index).value() + " to " + c);

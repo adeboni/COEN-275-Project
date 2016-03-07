@@ -60,7 +60,8 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 					if (addedLetters.contains(letters.get(i).value())) continue;
 					if (wr.regex.charAt(i) != '.') continue;
 					
-					if (blackboard.checkPair(letters.get(i).value(), dictWord.charAt(i)) || blackboard.boardedPlainLetters.contains(dictWord.charAt(i))) {
+					if (blackboard.checkPair(letters.get(i).value(), dictWord.charAt(i)) || 
+							blackboard.boardedPlainLetters.contains(dictWord.charAt(i))) {
 						wholeWordGood = false;
 						break;
 					}
@@ -73,7 +74,7 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 					tempQueue.add(assumption);
 					
 					addedLetters.add(letters.get(i).value());
-					blackboard.boardedPlainLetters.add(letters.get(i).value());
+					blackboard.boardedPlainLetters.add(Character.toString(dictWord.charAt(i)));
 				}
 				
 				if (wholeWordGood) {

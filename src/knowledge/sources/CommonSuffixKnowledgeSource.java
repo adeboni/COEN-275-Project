@@ -67,7 +67,7 @@ public class CommonSuffixKnowledgeSource extends StringKnowledgeSource {
 					tempQueue.add(assumption);
 					
 					addedLetters.add(letters.get(i).value());
-					blackboard.boardedPlainLetters.add(letters.get(i + delta).value());
+					blackboard.boardedPlainLetters.add(Character.toString(dictWord.charAt(i)));
 				}
 				
 				if (wholeWordGood) {
